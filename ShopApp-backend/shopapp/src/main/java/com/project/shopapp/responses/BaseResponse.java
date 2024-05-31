@@ -6,16 +6,15 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Data//toString
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
 public class BaseResponse {
-
-    @JsonProperty("create_at")
-    private LocalDateTime createAt;
+    @JsonProperty("created_at")
+    private LocalDateTime createdAt;
 
     @JsonProperty("updated_at")
     private LocalDateTime updatedAt;

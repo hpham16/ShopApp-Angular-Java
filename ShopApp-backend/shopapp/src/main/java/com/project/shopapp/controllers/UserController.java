@@ -75,8 +75,8 @@ public class UserController {
             );
             // Trả về token trong response
             return ResponseEntity.ok(LoginResponse.builder()
-                    .message(localizationUtils.getLocalizedMessage(MessageKeys.LOGIN_SUCCESSFULLY))
-                    .token(token)
+                            .message(localizationUtils.getLocalizedMessage(MessageKeys.LOGIN_SUCCESSFULLY))
+                            .token(token)
                     .build());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(

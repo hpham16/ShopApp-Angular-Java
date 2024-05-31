@@ -1,6 +1,5 @@
 package com.project.shopapp.models;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tokens")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,4 +32,5 @@ public class Token {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
 }

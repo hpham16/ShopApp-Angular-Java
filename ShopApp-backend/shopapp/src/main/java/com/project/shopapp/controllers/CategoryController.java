@@ -27,8 +27,8 @@ import java.util.Locale;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
-    private final MessageSource messageSource;
     private final LocaleResolver localeResolver;
+    private final MessageSource messageSource;
     private final LocalizationUtils localizationUtils;
 
     @PostMapping("")
@@ -77,3 +77,4 @@ public class CategoryController {
         return ResponseEntity.ok(localizationUtils.getLocalizedMessage(MessageKeys.DELETE_CATEGORY_SUCCESSFULLY));
     }
 }
+

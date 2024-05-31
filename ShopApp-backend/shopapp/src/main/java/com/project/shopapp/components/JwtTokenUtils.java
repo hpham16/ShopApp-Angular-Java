@@ -14,16 +14,14 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.security.SecureRandom;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Component
 @RequiredArgsConstructor
 public class JwtTokenUtils {
     @Value("${jwt.expiration}")
-    private int expiration; // lưu và biến môi trường
+    private int expiration; //save to an environment variable
     @Value("${jwt.secretKey}")
     private String secretKey;
     public String generateToken(com.project.shopapp.models.User user) throws Exception{
@@ -47,13 +45,12 @@ public class JwtTokenUtils {
     }
     private Key getSignInKey() {
         byte[] bytes = Decoders.BASE64.decode(secretKey);
+        //Keys.hmacShaKeyFor(Decoders.BASE64.decode("TaqlmGv1iEDMRiFp/pHuID1+T84IABfuA0xXh4GhiUI="));
         return Keys.hmacShaKeyFor(bytes);
-        //+W+zsmulxR1xWTc5k5Huq8M971t4LRdmoEAiMj0d+mc=
     }
-
     private String generateSecretKey() {
         SecureRandom random = new SecureRandom();
-        byte[] keyBytes = new byte[32];
+        byte[] keyBytes = new byte[32]; // 256-bit key
         random.nextBytes(keyBytes);
         String secretKey = Encoders.BASE64.encode(keyBytes);
         return secretKey;
@@ -65,13 +62,12 @@ public class JwtTokenUtils {
                 .parseClaimsJws(token)
                 .getBody();
     }
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+    public  <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = this.extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-
-    // kiem tra xem token het han chua
-    public boolean isTokenExpried(String token) {
+    //check expiration
+    public boolean isTokenExpired(String token) {
         Date expirationDate = this.extractClaim(token, Claims::getExpiration);
         return expirationDate.before(new Date());
     }
@@ -81,6 +77,6 @@ public class JwtTokenUtils {
     public boolean validateToken(String token, UserDetails userDetails) {
         String phoneNumber = extractPhoneNumber(token);
         return (phoneNumber.equals(userDetails.getUsername()))
-                && !isTokenExpried(token);
+                && !isTokenExpired(token);
     }
 }

@@ -29,8 +29,8 @@ public class ProductResponse extends BaseResponse{
                 .description(product.getDescription())
                 .categoryId(product.getCategory().getId())
                 .build();
-        productResponse.setCreateAt(product.getCreateAt());
-        productResponse.setUpdatedAt(product.getUpdateAt());
+        productResponse.setCreatedAt(product.getCreatedAt());
+        productResponse.setUpdatedAt(product.getUpdatedAt());
         return productResponse;
     }
 }

@@ -1,12 +1,10 @@
 package com.project.shopapp.models;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Table(name = "order_details")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,15 +23,16 @@ public class OrderDetail {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @JoinColumn(name = "price", nullable = false)
+    @Column(name = "price", nullable = false)
     private Float price;
 
-    @Column(name="number_of_products", nullable = false)
+    @Column(name = "number_of_products", nullable = false)
     private int numberOfProducts;
 
-    @Column(name="total_money", nullable = false)
+    @Column(name = "total_money", nullable = false)
     private Float totalMoney;
 
     @Column(name = "color")
     private String color;
+
 }

@@ -1,12 +1,11 @@
 package com.project.shopapp.models;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Table(name = "categories")
-@Data
+@Data//toString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,7 +18,4 @@ public class Category {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-
-
 }

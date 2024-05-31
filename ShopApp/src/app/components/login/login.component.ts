@@ -66,15 +66,16 @@ export class LoginComponent {
       next: (response: LoginResponse) => {
         debugger
         const {token} = response;
-        this.tokenService.setToken(token);
-        //this.router.navigate(['/login']);
+        if(this.rememberMe) {
+          this.tokenService.setToken(token);
+        }
       },
       complete: () => {
-        debugger
+        debugger;
       },
       error: (error: any) => {
-        debugger
-        alert(`Cannot register, error: ${error.error}`);
+        debugger;
+        alert(error?.error?.message);
       }
     });
   }

@@ -6,11 +6,11 @@ import com.project.shopapp.dtos.UserDTO;
 import com.project.shopapp.exceptions.DataNotFoundException;
 
 import com.project.shopapp.exceptions.PermissionDenyException;
-import com.project.shopapp.models.Role;
-import com.project.shopapp.models.User;
+import com.project.shopapp.models.*;
 import com.project.shopapp.repositories.RoleRepository;
 import com.project.shopapp.repositories.UserRepository;
 import com.project.shopapp.utils.MessageKeys;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,29 +22,31 @@ import org.springframework.stereotype.Service;
 import javax.swing.text.html.Option;
 import java.util.Optional;
 
-@Service
 @RequiredArgsConstructor
-public class UserService implements IUserService {
+@Service
+public class UserService implements IUserService{
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtils jwtTokenUtil;
     private final AuthenticationManager authenticationManager;
     private final LocalizationUtils localizationUtils;
-
     @Override
+    @Transactional
     public User createUser(UserDTO userDTO) throws Exception {
+        //register user
         String phoneNumber = userDTO.getPhoneNumber();
+        // Kiểm tra xem số điện thoại đã tồn tại hay chưa
         if(userRepository.existsByPhoneNumber(phoneNumber)) {
-            throw new DataIntegrityViolationException("Đã tồn tại số điện thoại này rồi!");
+            throw new DataIntegrityViolationException("Phone number already exists");
         }
-        //convert UserDTO sang user
         Role role =roleRepository.findById(userDTO.getRoleId())
                 .orElseThrow(() -> new DataNotFoundException(
                         localizationUtils.getLocalizedMessage(MessageKeys.ROLE_DOES_NOT_EXISTS)));
         if(role.getName().toUpperCase().equals(Role.ADMIN)) {
-            throw new PermissionDenyException("Bạn không thể đăng ký 1 ADMIN ACCOUNT");
+            throw new PermissionDenyException("You cannot register an admin account");
         }
+        //convert from userDTO => user
         User newUser = User.builder()
                 .fullName(userDTO.getFullName())
                 .phoneNumber(userDTO.getPhoneNumber())
@@ -76,10 +78,10 @@ public class UserService implements IUserService {
         if(optionalUser.isEmpty()) {
             throw new DataNotFoundException(localizationUtils.getLocalizedMessage(MessageKeys.WRONG_PHONE_PASSWORD));
         }
-//        return optionalUser.get(); //muốn trả JWT token?
+        //return optionalUser.get();//muốn trả JWT token ?
         User existingUser = optionalUser.get();
         //check password
-        if(existingUser.getFacebookAccountId() == 0
+        if (existingUser.getFacebookAccountId() == 0
                 && existingUser.getGoogleAccountId() == 0) {
             if(!passwordEncoder.matches(password, existingUser.getPassword())) {
                 throw new BadCredentialsException(localizationUtils.getLocalizedMessage(MessageKeys.WRONG_PHONE_PASSWORD));
@@ -96,10 +98,22 @@ public class UserService implements IUserService {
                 phoneNumber, password,
                 existingUser.getAuthorities()
         );
+
+        //authenticate with Java Spring security
         authenticationManager.authenticate(authenticationToken);
         return jwtTokenUtil.generateToken(existingUser);
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
