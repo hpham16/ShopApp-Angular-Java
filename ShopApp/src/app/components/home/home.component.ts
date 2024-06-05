@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { environment } from 'src/app/environments/environment';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +14,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
-  categories: Category[] = []; 
-  selectedCategoryId: number  = 0; 
+  categories: Category[] = []; // Dữ liệu động từ categoryService
+  selectedCategoryId: number  = 0; // Giá trị category được chọn
   currentPage: number = 1;
   itemsPerPage: number = 12;
   pages: number[] = [];
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,    
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
     ) {}
 
   ngOnInit() {
@@ -90,12 +92,13 @@ export class HomeComponent implements OnInit {
       startPage = Math.max(endPage - maxVisiblePages + 1, 1);
     }
 
-    return new Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
+    return new Array(endPage - startPage + 1).fill(0)
+        .map((_, index) => startPage + index);
   }
   // Hàm xử lý sự kiện khi sản phẩm được bấm vào
   onProductClick(productId: number) {
     debugger
     // Điều hướng đến trang detail-product với productId là tham số
-    this.router.navigate(['/detail-product', productId]);
-  }
+    this.router.navigate(['/products', productId]);
+  }  
 }

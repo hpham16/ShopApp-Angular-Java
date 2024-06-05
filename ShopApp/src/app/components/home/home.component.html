@@ -9,9 +9,9 @@
     <!--Đoạn này có 1 ô searchbox bên trái, 1 combobox bên phải  -->
     <div class="search-box">
         <input type="text" class="form-control search-input" 
-            placeholder="Tìm sản phẩm"          
-             [(ngModel)]="keyword">
-        <select class="form-control product-category"           
+            placeholder="Tìm sản phẩm" 
+            [(ngModel)]="keyword">
+        <select class="form-control product-category"             
             [(ngModel)]="selectedCategoryId">
             <option [value]="0">Tất cả</option> 
             <option *ngFor="let category of categories" [value]="category.id">

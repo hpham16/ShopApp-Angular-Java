@@ -29,8 +29,20 @@
 }
 
 .form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgba(255, 255, 255, 0.5);
     opacity: 1;
+    /* Firefox */
+}
+
+.form-control:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .product-item {
@@ -52,11 +64,11 @@
 }
 
 .product-description {
-    color: rgb(173, 178, 203)
+    color: rgb(173, 178, 203);
 }
 
 .product-warranty {
-    color: rgb(242, 126, 212)
+    color: rgb(242, 126, 212);
 }
 
 .product-price {
@@ -76,4 +88,20 @@
 
 .space-x {
     margin: 0 5px;
+    /*margin-top, margin-right, margin-bottom, margin-left*/
 }
+
+.page-number {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin: 0 2px;
+    border-radius: 3px;
+}
+
+.page-number.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+  

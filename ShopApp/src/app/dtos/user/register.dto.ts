@@ -30,7 +30,6 @@ export class RegisterDTO {
     facebook_account_id: number = 0;
     google_account_id: number = 0;
     role_id: number = 1;
-    
     constructor(data: any) {
         this.fullname = data.fullname;
         this.phone_number = data.phone_number;

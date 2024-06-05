@@ -3,32 +3,43 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DetailProductComponent } from './components/detail-product/detail-product.component';
 import { OrderComponent } from './components/order/order.component';
-import { OrderConfirmComponent } from './components/order-confirm/order-confirm.component';
+import { OrderDetailComponent } from './components/detail-order/order.detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { DetailProductComponent } from './components/detail-product/detail-product.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule,  HTTP_INTERCEPTORS} from '@angular/common/http';
-import { TokenInterceptor } from './interceptors/token.interceptor';
-// import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import {TokenInterceptor} from './interceptors/token.interceptor';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app/app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { 
+  HttpClientModule, 
+  HTTP_INTERCEPTORS 
+} from '@angular/common/http';
+
 
 @NgModule({
-  declarations: [
-    HomeComponent,
+  declarations: [    
+    HomeComponent, 
     HeaderComponent,
-    FooterComponent,
-    OrderComponent,
-    OrderConfirmComponent,
-    LoginComponent,
-    RegisterComponent,
-    DetailProductComponent
+    FooterComponent, 
+    DetailProductComponent, 
+    OrderComponent, 
+    OrderDetailComponent, 
+    LoginComponent, 
+    RegisterComponent, 
+    AppComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    
+    AppRoutingModule,
+    NgbModule,
   ],
   providers: [
     {
@@ -38,12 +49,13 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     },
   ],
   bootstrap: [
-    HomeComponent,
-    //OrderComponent,
-    //OrderConfirmComponent,
-    // LoginComponent,
-    // RegisterComponent,
-    //DetailProductComponent
+    AppComponent
+    // HomeComponent,
+    //DetailProductComponent,
+    // OrderComponent,
+    //OrderDetailComponent,
+    //LoginComponent,
+    // RegisterComponent
   ]
 })
 export class AppModule { }
