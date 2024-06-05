@@ -11,12 +11,13 @@ import com.project.shopapp.repositories.CategoryRepository;
 import com.project.shopapp.repositories.ProductImageRepository;
 import com.project.shopapp.repositories.ProductRepository;
 import com.project.shopapp.responses.ProductResponse;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,10 +47,17 @@ public class ProductService implements IProductService{
 
     @Override
     public Product getProductById(long productId) throws Exception {
-        return productRepository.findById(productId).
-                orElseThrow(()-> new DataNotFoundException(
-                        "Cannot find product with id ="+productId));
+        Optional<Product> optionalProduct = productRepository.getDetailProduct(productId);
+        if(optionalProduct.isPresent()) {
+            return optionalProduct.get();
+        }
+        throw new DataNotFoundException("Cannot find product with id =" + productId);
     }
+    @Override
+    public List<Product> findProductsByIds(List<Long> productIds) {
+        return productRepository.findProductsByIds(productIds);
+    }
+
 
     @Override
     public Page<ProductResponse> getAllProducts(String keyword,
@@ -59,7 +67,6 @@ public class ProductService implements IProductService{
         productsPage = productRepository.searchProducts(categoryId, keyword, pageRequest);
         return productsPage.map(ProductResponse::fromProduct);
     }
-
     @Override
     @Transactional
     public Product updateProduct(
@@ -98,7 +105,6 @@ public class ProductService implements IProductService{
     public boolean existsByName(String name) {
         return productRepository.existsByName(name);
     }
-
     @Override
     @Transactional
     public ProductImage createProductImage(
@@ -118,8 +124,9 @@ public class ProductService implements IProductService{
         if(size >= ProductImage.MAXIMUM_IMAGES_PER_PRODUCT) {
             throw new InvalidParamException(
                     "Number of images must be <= "
-                            +ProductImage.MAXIMUM_IMAGES_PER_PRODUCT);
+                    +ProductImage.MAXIMUM_IMAGES_PER_PRODUCT);
         }
         return productImageRepository.save(newProductImage);
     }
+
 }

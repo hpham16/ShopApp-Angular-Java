@@ -26,4 +26,7 @@ api:
   prefix: api/v1
 jwt:
   expiration: 2592000 #30 ngày = 2592000 giây
-  secretKey: +W+zsmulxR1xWTc5k5Huq8M971t4LRdmoEAiMj0d+mc=
+  secretKey: TaqlmGv1iEDMRiFp/pHuID1+T84IABfuA0xXh4GhiUI=
+
+logging.level.org.springframework.security: DEBUG
+

@@ -8,9 +8,9 @@ import com.project.shopapp.models.Product;
 import com.project.shopapp.repositories.OrderDetailRepository;
 import com.project.shopapp.repositories.OrderRepository;
 import com.project.shopapp.repositories.ProductRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

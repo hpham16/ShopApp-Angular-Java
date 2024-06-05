@@ -13,8 +13,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
+import { UserProfileComponent } from './components/user-profile/user.profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { CommonModule } from '@angular/common';
+//import { AdminComponent } from './components/admin/admin.component';
+//import { OrderAdminComponent } from './components/admin/order/order.admin.component';
+import { ProductAdminComponent } from './components/admin/product/product.admin.component';
+import { CategoryAdminComponent } from './components/admin/category/category.admin.component';
+//import { DetailOrderAdminComponent } from './components/admin/detail-order/detail.order.admin.component';
+import { AdminModule } from './components/admin/admin.module';
 import { 
   HttpClientModule, 
   HTTP_INTERCEPTORS 
@@ -31,15 +38,24 @@ import {
     OrderDetailComponent, 
     LoginComponent, 
     RegisterComponent, 
-    AppComponent
+    UserProfileComponent,
+    AppComponent,
+    //admin    
+    //AdminComponent,
+    //OrderAdminComponent,
+    //ProductAdminComponent,
+    //CategoryAdminComponent,
+    //DetailOrderAdminComponent,
   ],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    NgbModule,
+    HttpClientModule,    
+    AppRoutingModule,    
+    NgbModule,        
+    AdminModule,
   ],
   providers: [
     {

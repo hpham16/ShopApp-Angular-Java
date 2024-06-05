@@ -3,7 +3,7 @@ import { Product } from '../../models/product';
 import { Category } from '../../models/category';
 import { ProductService } from 'src/app/services/product.service';
 import { CategoryService } from 'src/app/services/category.service';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = []; // Dữ liệu động từ categoryService
   selectedCategoryId: number  = 0; // Giá trị category được chọn
-  currentPage: number = 1;
+  currentPage: number = 0;
   itemsPerPage: number = 12;
   pages: number[] = [];
   totalPages:number = 0;
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     });
   }
   searchProducts() {
-    this.currentPage = 1;
+    this.currentPage = 0;
     this.itemsPerPage = 12;
     debugger
     this.getProducts(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
