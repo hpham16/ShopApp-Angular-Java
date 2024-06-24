@@ -31,7 +31,6 @@ public class OrderDetailController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> getOrderDetail(

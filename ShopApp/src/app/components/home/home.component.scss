@@ -2,7 +2,7 @@
 
 .intro-section {
     text-align: center;
-    color: white;
+    color: rgb(86, 86, 86);
     padding: 20px;
 }
 
@@ -19,40 +19,62 @@
 
 .search-input {
     width: 300px;
-    background-color: $shopapp-background-color;
+    background-color:  rgb(84, 84, 84);
     margin-right: 10px;
-    border-color: rgba(255, 255, 255, 0.5);
-    color: white;
+    border-color: rgba(200, 200, 200, 0.5);
+    color: rgba(200, 200, 200, 0.5);
 }
 
 .form-control {
     background-color: transparent;
-    color: white;
+    color: rgb(129, 129, 129);
 }
 
+// chữ sau khi nhập ô bên cạnh dmsp
 .form-control::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(84, 84, 84, 0.5);
     opacity: 1;
     /* Firefox */
 }
 
 .form-control:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(86, 86, 86, 0.5);
 }
 
 .form-control::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(87, 87, 87, 0.5);
 }
-
+h1 {
+    font-weight: bold;
+}
 .product-item {
-    background-color: $shopapp-background-color;
-    border: 1px solid rgb(35, 39, 61);
+    background-color: rgb(255, 228, 244);
+    border: 1.5px solid rgb(254, 205, 217);
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.product-description {
+    overflow: hidden; /* Ẩn phần nội dung thừa */
+    text-overflow: ellipsis; /* Thêm dấu ba chấm nếu văn bản bị cắt */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Giới hạn số dòng */
+    -webkit-box-orient: vertical;
+    height: auto;
+    max-height: 3.6em; /* Chiều cao tối đa cho 2 dòng, mỗi dòng khoảng 1.8em */
+    line-height: 1.8em; /* Chiều cao dòng để phù hợp với chiều cao */
+}
+
+.product-price {
+    font-weight: bold; /* In đậm */
+    margin-top: auto;
+    font-size: 1.2em; /* Tăng cỡ chữ */
 }
 
 .product-image {
@@ -62,20 +84,26 @@
 }
 
 .product-name {
-    color: white;
+    color: rgb(86, 86, 86);
 }
 
 .product-description {
-    color: rgb(173, 178, 203);
+    color: rgb(145, 149, 170);
+}
+.col-lg-4, .col-md-6 {
+    display: flex;
+    padding: 10px;
 }
 
 .product-warranty {
-    color: $shopapp-tint-color;
+    color: rgb(145, 149, 170);
 }
 
 .product-price {
-    color: white;
+    color: rgb(132, 132, 132);
+    font-size: 20px; /* Hoặc bất kỳ kích thước nào bạn muốn */
 }
+
 
 .product-rating {
     color: #FFD700;
@@ -96,14 +124,14 @@
 .page-number {
     cursor: pointer;
     padding: 5px 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #95295a;
     margin: 0 2px;
     border-radius: 3px;
 }
 
 .page-number.active {
     background-color: $shopapp-color !important;
-    color: #fff;
+    color: #912e97;
     border-color: $shopapp-color !important;
 }
 .btn-primary {

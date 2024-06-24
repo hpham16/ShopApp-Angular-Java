@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { CartService } from 'src/app/services/cart.service';
-import { CategoryService } from 'src/app/services/category.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
-import { ProductImage } from 'src/app/models/product.image';
-import { environment } from 'src/environments/environment';
+import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { environment } from '../../../environments/environment';
+import { ProductImage } from '../../models/product.image';
 
 @Component({
   selector: 'app-detail-product',
@@ -18,6 +17,7 @@ export class DetailProductComponent implements OnInit {
   productId: number = 0;
   currentImageIndex: number = 0;
   quantity: number = 1;
+  isPressedAddToCart:boolean = false;
   constructor(
     private productService: ProductService,
     private cartService: CartService,
@@ -94,6 +94,7 @@ export class DetailProductComponent implements OnInit {
     }      
     addToCart(): void {
       debugger
+      this.isPressedAddToCart = true;
       if (this.product) {
         this.cartService.addToCart(this.product.id, this.quantity);
       } else {
@@ -103,6 +104,7 @@ export class DetailProductComponent implements OnInit {
     }    
         
     increaseQuantity(): void {
+      debugger
       this.quantity++;
     }
     
@@ -111,8 +113,16 @@ export class DetailProductComponent implements OnInit {
         this.quantity--;
       }
     }
-    
+    getTotalPrice(): number {
+      if (this.product) {
+        return this.product.price * this.quantity;
+      }
+      return 0;
+    }
     buyNow(): void {      
+      if(this.isPressedAddToCart == false) {
+        this.addToCart();
+      }
       this.router.navigate(['/orders']);
     }    
 }

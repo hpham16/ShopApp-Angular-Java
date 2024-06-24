@@ -1,6 +1,6 @@
-@import '../../styles/shared-styles.scss';
+//đây là trang chi tiết sp
 .intro-section {
-    color: white;
+    color: rgb(98, 98, 98);
     padding: 20px;
     text-align: center;
 }
@@ -29,6 +29,28 @@
     /* Xóa khoảng cách ngang ở ảnh cuối cùng */
 }
 
+h3 {
+    font-weight: bold;
+    font-size: 1.7em; /* Giảm cỡ chữ xuống 1 xíu */
+    color: rgb(153, 21, 102); /* Màu chữ */
+    background-color: pink; /* Màu nền */
+    padding: 8px 15px; /* Kích thước lớn hơn cho nút */
+    border-radius: 20px; /* Góc cong lớn hơn */
+    text-transform: uppercase; /* Chuyển đổi chữ thành HOA */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ nhẹ */
+    display: inline-block; /* Để khung bao quanh nó gọn hơn */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mềm mại */
+    margin: 0; /* Loại bỏ margin mặc định */
+    border: 2px solid transparent; /* Khung biên trong suốt ban đầu */
+}
+
+h3:hover {
+    background-color: #ff6b6b; /* Màu nền thay đổi khi di chuột qua */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ lớn hơn khi di chuột qua */
+    border-color: #ff6b6b; /* Màu khung biên thay đổi khi di chuột qua */
+}
+
+
 .thumbnail-item img {
     width: 100%;
     height: 100%;
@@ -36,10 +58,10 @@
 }
 
 .thumbnail-item.active {
-    border: 4px solid $shopapp-tint-color;
+    border: 2px solid white;
 }
 .product-details {
-    color: white;
+    color: rgb(88, 88, 88);
     padding: 20px;
 }
 
@@ -52,33 +74,72 @@
 .product-actions button {
     margin-right: 10px;
 }
-.border-wrapper {
-    border: 1px solid white;      
-  }
+
+//chỗ số lượng
+
 
   .product-quantity {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      margin-top: 10px;
+      margin-top: 20px;
   }
 
-  .product-quantity button {
-      background-color: transparent;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
+/* Định dạng wrapper chứa nút và input */
+.border-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
   }
-  .product-quantity input {
-    background-color: transparent;
+  
+  /* Định dạng nút giảm */
+  .decrease {
+    background-color: #FF7F7F; /* Màu đỏ nhạt */
+    color: #FFF;
+    font-size: 24px; /* Tăng kích thước của dấu - */
+    font-weight: bold; /* In đậm phần text */
+    cursor: pointer;
+    padding: 10px 18px; /* Điều chỉnh khoảng cách */
     border: none;
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    width: 40px;
-    margin: 0 10px;
+    transition: background-color 0.3s ease;
   }
-  .product-quantity input:focus {
-    outline: none;
-  }  
+  
+  .decrease:hover {
+    background-color: #FF5252; /* Màu đỏ sáng khi hover */
+  }
+  
+  /* Định dạng input */
+  .product-quantity input {
+    background-color: rgb(255,242,248);
+    color: #555;
+    font-size: 20px; /* Tăng kích thước của input */
+    text-align: center;
+    font-weight: bold;
+    width: 60px; /* Tăng chiều rộng của input */
+    padding: 12px 0;
+    border: none;
+  }
+  
+  /* Định dạng nút tăng */
+  .increase {
+    background-color: #32CD32; /* Màu xanh lá cây */
+    color: #FFF;
+    font-size: 24px; /* Tăng kích thước của dấu + */
+    font-weight: bold; /* In đậm phần text */
+    cursor: pointer;
+    padding: 10px 18px; /* Điều chỉnh khoảng cách */
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .increase:hover {
+    background-color: #2E8B57; /* Màu xanh sáng khi hover */
+  }
+  
+  
+  
+  
+  
+  
+  

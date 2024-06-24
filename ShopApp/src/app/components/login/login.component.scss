@@ -1,53 +1,62 @@
 @import '../../styles/shared-styles.scss';
 
 .container {
-    color: white;
+    color: rgb(117, 117, 117);
     height: 100vh;
 }
 .login-form {
-    background-color: $shopapp-background-color;
+    background-color: rgb(255, 235, 247);
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px;  
     max-width: 500px;
-    border: 1px solid rgb(32, 34, 60);
+    border: 2px solid rgb(255, 200, 214);
     align-items: center;
     justify-content: center;
 }
+
+// chữ đăng nhập
 .login-header {
     text-align: center;
-    color: $shopapp-title-color;
+    color: rgb(255, 140, 168);
     margin-bottom: 20px;
+    font-weight: bold; /* Làm cho chữ in đậm */
 }
+
+
+//thong tin sau khi nhap 
 .form-control {
     background-color: transparent;
     border: none;
-    color: white;
+    color: rgb(97, 97, 97);
 }
+
+// khi con trỏ để nhập
 .form-control:focus {
-    color: white;
+    color: rgb(117, 117, 117);
     background-color: transparent;
     outline: none;
     border-color: transparent;    
 }
-  
+
 .divider-nospace {
-    border-top: 1px solid white;
+    border-top: 2px solid rgb(255, 200, 214);
 }
+
 
 .password-field {
     position: relative;
 }
+// con mắt
 .password-toggle {
     position: absolute;
-    top: 50%;
+    top: 70%;
     right: 10px;
     transform: translateY(-50%);
-    color: $shopapp-title-color;
+    color: rgb(146, 145, 145);
     cursor: pointer;
 }
 .checkbox-text {
-    color: rgb(243, 165, 42);
-    display: flex;
+    color: rgb(162, 162, 162);    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
@@ -55,7 +64,17 @@
 /* Màu checkbox khi được chọn */
 .checkbox-text input[type="checkbox"]:checked {
     border-color: white;
-    background-color: $shopapp-tint-color;
+    background-color: rgb(255,140,168);
+}
+
+label[for="password"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: bold;
+}
+
+label[for="phoneNumber"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: bold;
 }
 
 .form-check-input {
@@ -63,40 +82,39 @@
 }
 
 .register-link {
-    color: $shopapp-title-color;
+    color: rgb(255,140,168);
     text-decoration: none;
 }
 .access-right {
-    margin-top: 20px;
+    margin-top: 15px;
     width: 200px;
-    color: white;
-    background-color: $shopapp-background-color !important;
-    border: 1px solid $shopapp-tint-color;
+    color: rgb(255,140,168);
+    border: 1px solid rgb(228, 228, 228);
 }
-
 .access-right:focus {
-    border: 1px solid $shopapp-tint-color;
+    border: 1px solid rgb(225, 64, 180);
 }
 
+//ít nhất 3 ký tự
 .form-control::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgba(243, 165, 42, 0.4);
+    color: rgba(250, 179, 196, 0.7);
     opacity: 1;
     /* Firefox */
 }
 
 .form-control:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: rgba(243, 165, 42, 0.4);
+    color: rgba(250, 179, 196, 0.7);
 }
 
 .form-control::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: rgba(243, 165, 42, 0.4);
+    color: rgba(250, 179, 196, 0.7);
 }
 
 .login-button {
-    background: linear-gradient(to right, $shopapp-tint-color, $shopapp-color);
+    background: linear-gradient(to right,rgb(250, 175, 203), rgb(255,140,168) );
     color: white;
     border-radius: 30px;
     width: 100%;
@@ -105,8 +123,8 @@
     border: none;
 }
 .divider {
-    height: 1px;
-    background-color: rgb(243, 165, 42);
+    height: 2px;
+    background-color: rgb(255, 200, 214);
     /* background-color: rgb(105, 244, 181) */
     margin: 20px;
 }

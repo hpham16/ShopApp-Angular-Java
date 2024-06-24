@@ -3,13 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Order } from 'src/app/models/order';
-import { OrderService } from 'src/app/services/order.service';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { OrderResponse } from 'src/app/responses/order/order.response';
-import { OrderDetail } from 'src/app/models/order.detail';
-import { OrderDTO } from 'src/app/dtos/order/order.dto';
+import { environment } from '../../../../environments/environment';
+import { OrderDTO } from '../../../dtos/order/order.dto';
+import { OrderResponse } from '../../../responses/order/order.response';
+import { OrderService } from '../../../services/order.service';
+
 
 @Component({
   selector: 'app-detail-order-admin',

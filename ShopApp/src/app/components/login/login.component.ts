@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 import { LoginResponse } from '../../responses/user/login.response';
 import { Role } from '../../models/role'; // Đường dẫn đến model Role
 import { UserResponse } from '../../responses/user/user.response';
-
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,9 +18,14 @@ export class LoginComponent implements OnInit{
   @ViewChild('loginForm') loginForm!: NgForm;
 
   /*
-  //Login user
+  //Login user1
   phoneNumber: string = '33445566';
   password: string = '123456789';
+
+  //Login user2
+  phoneNumber: string = '0964896239';
+  password: string = '123456789';
+
 
   //Login admin
   phoneNumber: string = '11223344';
@@ -45,7 +50,8 @@ export class LoginComponent implements OnInit{
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private tokenService: TokenService,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -105,6 +111,7 @@ export class LoginComponent implements OnInit{
               
             },
             complete: () => {
+              this.cartService.refreshCart();
               debugger;
             },
             error: (error: any) => {

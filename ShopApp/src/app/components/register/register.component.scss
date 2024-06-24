@@ -1,16 +1,14 @@
-@import '../../styles/shared-styles.scss';
-
 .container {
-    color: white;
+    color: rgb(117, 117, 117);
     height: 100vh;    
 }
 
 .register-form {
-    background-color: $shopapp-background-color;
+    background-color: rgb(255, 235, 247);
     border-radius: 10px;
-    padding: 20px;
+    padding: 45px;
     max-width: 500px;
-    border: 1px solid rgb(32, 34, 60);
+    border: 2px solid rgb(255, 200, 214);
     align-items: center;
     justify-content: center;
 }
@@ -18,23 +16,56 @@
 .register-header {
     text-align: center;
     /*      color: rgb(233, 66, 178);*/
-    color: $shopapp-title-color;
+    color: rgb(88, 88, 88);
     margin-bottom: 20px;
+    font-weight: bold;
 
 }
 
+
+label[for="phoneNumber"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: 500;
+}
+
+label[for="password"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: 500;
+}
+
+label[for="retype-password"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: 500;
+}
+
+label[for="full-name"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: 500;
+}
+
+label[for="address"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: 500;
+}
+
+
+label[for="date-of-birth"] {
+    font-size: 18px; /* Thay đổi cỡ chữ thành 20px */
+    font-weight: 500;
+}
+
 .label-text {
-    color: rgb(243, 165, 42);
+    color: rgb(124, 124, 124);
 }
 
 .form-control {
     background-color: transparent;
     border: none;
-    color: white;
+    color: rgb(95, 95, 95);
 }
 
 .form-control:focus {
-    color: white;
+    color: rgb(103, 103, 103);
     background-color: transparent;
     outline: none;
     box-shadow: none;
@@ -48,15 +79,15 @@
 
 .password-toggle {
     position: absolute;
-    top: 50%;
+    top: 70%;
     right: 10px;
     transform: translateY(-50%);
-    color: $shopapp-title-color;
+    color: rgb(121, 121, 121);
     cursor: pointer;
 }
 
 .checkbox-text {
-    color: rgb(243, 165, 42);
+    color: rgb(52, 52, 52);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,7 +97,7 @@
 /* Màu checkbox khi được chọn */
 .checkbox-text input[type="checkbox"]:checked {
     border-color: white;
-    background-color: $shopapp-tint-color;
+    background-color: rgb(255,140,168);
 }
 
 .form-check-input {
@@ -74,44 +105,50 @@
 }
 
 .register-link {
-    color: $shopapp-title-color;
+    color: rgb(255,140,168);
     text-decoration: none;
 }
 
 .register-button {
-    background: linear-gradient(to right, $shopapp-tint-color, $shopapp-color);
+    background: linear-gradient(to right, rgb(250, 175, 203), rgb(255,140,168));
     color: white;
     border-radius: 30px;
     width: 100%;
     padding: 10px 0;
     margin-top: 20px;
     border: none;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .divider {
-    height: 1px;
-    background-color: rgb(243, 165, 42);
+    height: 2px;
+    background-color: rgb(255, 200, 214);
     /*      background-color: rgb(105, 244, 181)*/
     margin: 20px;
 }
 
 .divider-nospace {
-    border-top: 1px solid white;
+    border-top: 1px solid rgb(255, 200, 214);
 }
 
 .form-control::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgba(243, 165, 42, 0.4);
+    color: rgba(148, 148, 148, 0.4);
     opacity: 1;
     /* Firefox */
 }
 
 .form-control:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: rgba(243, 165, 42, 0.4);
+    color: rgba(154, 154, 154, 0.4);
 }
 
 .form-control::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: rgba(243, 165, 42, 0.4);
+    color: rgba(176, 176, 176, 0.4);
+}
+
+.register-link {
+    font-weight: bold; /* Làm cho chữ in đậm */
 }
