@@ -2,17 +2,17 @@ server:
   port: 8088
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/ShopApp?useSSL=false&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password:
+    url: jdbc:postgresql://tiny.db.elephantsql.com:5432/phkfaxai
+    driver-class-name: org.postgresql.Driver
+    username: phkfaxai
+    password: lSA1WgHhVFzQvYRJQoCS5-WCDWz2bAUS
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate:
-      dialect: org.hibernate.dialect.MySQL8Dialect
+      dialect: org.hibernate.dialect.PostgreSQLDialect
       format_sql: true
   servlet:
     multipart:
