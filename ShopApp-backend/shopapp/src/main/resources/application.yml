@@ -2,10 +2,10 @@ server:
   port: 8088
 spring:
   datasource:
-    url: jdbc:postgresql://tiny.db.elephantsql.com:5432/phkfaxai
+    url: jdbc:postgresql://ep-holy-heart-a58jnnwh.us-east-2.aws.neon.tech/saleapp
     driver-class-name: org.postgresql.Driver
-    username: phkfaxai
-    password: lSA1WgHhVFzQvYRJQoCS5-WCDWz2bAUS
+    username: saleapp_owner
+    password: yp8tDSnX6vjF
   jpa:
     show-sql: true
     hibernate:
