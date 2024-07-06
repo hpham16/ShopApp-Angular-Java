@@ -46,7 +46,9 @@ public class WebSecurityConfig {
                                     String.format("%s/users/login", apiPrefix),
                                     "/error"  // Thêm dòng này để cho phép truy cập công khai đến /error
                             )
+
                             .permitAll()
+
                             .requestMatchers(GET,
                                     String.format("%s/roles**", apiPrefix)).permitAll()
 
