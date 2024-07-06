@@ -79,7 +79,10 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 
         String requestPath = request.getServletPath();
         String requestMethod = request.getMethod();
-
+        // Bypass for /error path
+        if (requestPath.equals("/error")) {
+            return true;
+        }
         if (requestPath.startsWith(String.format("/%s/orders", apiPrefix))
                 && requestMethod.equals("GET")) {
             // Check if the requestPath matches the desired pattern
