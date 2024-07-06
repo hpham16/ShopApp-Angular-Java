@@ -43,7 +43,8 @@ public class WebSecurityConfig {
                     requests
                             .requestMatchers(
                                     String.format("%s/users/register", apiPrefix),
-                                    String.format("%s/users/login", apiPrefix)
+                                    String.format("%s/users/login", apiPrefix),
+                                    String.format("%s/error", apiPrefix)  // Thêm dòng này để cho phép truy cập công khai đến /error
                             )
                             .permitAll()
                             .requestMatchers(GET,
