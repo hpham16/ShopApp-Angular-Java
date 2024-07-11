@@ -13,9 +13,9 @@ import { TokenService } from '../services/token.service';
 export class AdminGuard {
   userResponse?:UserResponse | null;
   constructor(
-    private tokenService: TokenService, 
+    private tokenService: TokenService,
     private router: Router,
-    private userService:UserService 
+    private userService:UserService
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -23,7 +23,7 @@ export class AdminGuard {
     const isUserIdValid = this.tokenService.getUserId() > 0;
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
     const isAdmin = this.userResponse?.role.name == 'admin';
-    debugger
+
     if (!isTokenExpired && isUserIdValid && isAdmin) {
       return true;
     } else {
@@ -32,13 +32,13 @@ export class AdminGuard {
       this.router.navigate(['/login']);
       return false;
     }
-  }  
+  }
 }
 
 export const AdminGuardFn: CanActivateFn = (
-  next: ActivatedRouteSnapshot, 
+  next: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): boolean => {
-  debugger
+
   return inject(AdminGuard).canActivate(next, state);
 }

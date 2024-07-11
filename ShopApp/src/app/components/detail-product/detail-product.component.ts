@@ -31,7 +31,7 @@ export class DetailProductComponent implements OnInit {
     ngOnInit() {
       // Lấy productId từ URL      
       const idParam = this.activatedRoute.snapshot.paramMap.get('id');
-      debugger
+      
       //this.cartService.clearCart();
       //const idParam = 9 //fake tạm 1 giá trị
       if (idParam !== null) {
@@ -41,22 +41,22 @@ export class DetailProductComponent implements OnInit {
         this.productService.getDetailProduct(this.productId).subscribe({
           next: (response: any) => {            
             // Lấy danh sách ảnh sản phẩm và thay đổi URL
-            debugger
+            
             if (response.product_images && response.product_images.length > 0) {
               response.product_images.forEach((product_image:ProductImage) => {
                 product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
               });
             }            
-            debugger
+            
             this.product = response 
             // Bắt đầu với ảnh đầu tiên
             this.showImage(0);
           },
           complete: () => {
-            debugger;
+            ;
           },
           error: (error: any) => {
-            debugger;
+            ;
             console.error('Error fetching detail:', error);
           }
         });    
@@ -65,7 +65,7 @@ export class DetailProductComponent implements OnInit {
       }      
     }
     showImage(index: number): void {
-      debugger
+      
       if (this.product && this.product.product_images && 
           this.product.product_images.length > 0) {
         // Đảm bảo index nằm trong khoảng hợp lệ        
@@ -79,21 +79,21 @@ export class DetailProductComponent implements OnInit {
       }
     }
     thumbnailClick(index: number) {
-      debugger
+      
       // Gọi khi một thumbnail được bấm
       this.currentImageIndex = index; // Cập nhật currentImageIndex
     }  
     nextImage(): void {
-      debugger
+      
       this.showImage(this.currentImageIndex + 1);
     }
   
     previousImage(): void {
-      debugger
+      
       this.showImage(this.currentImageIndex - 1);
     }      
     addToCart(): void {
-      debugger
+      
       this.isPressedAddToCart = true;
       if (this.product) {
         this.cartService.addToCart(this.product.id, this.quantity);
@@ -104,7 +104,7 @@ export class DetailProductComponent implements OnInit {
     }    
         
     increaseQuantity(): void {
-      debugger
+      
       this.quantity++;
     }
     

@@ -1,49 +1,38 @@
 <div class="container-fluid">
-    <header class="header bg-success text-white d-flex justify-content-between">
-      <h1 class="header-title">TRANG QUẢN LÝ ĐƠN HÀNG</h1>
-      <!-- Logout Button -->
-      <button class="btn btn-danger btn-sm" (click)="logout()">Đăng xuất</button>
-    </header>
-    <div class="row">
-      <nav id="sidebar" class="col-md-2 col-lg-2 d-md-block bg-light sidebar">
-        <div class="position-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" 
-                (click)="showAdminComponent('orders')"
-                routerLink="/admin/orders"
-                routerLinkActive="active">
-                <i class="fab fa-first-order icon"></i>Đơn hàng
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" 
-                (click)="showAdminComponent('categories')"
-                  routerLink="/admin/categories"
-                  routerLinkActive="active">
-                <i class="fab fa-canadian-maple-leaf icon"></i>Danh mục sản phẩm
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" 
-                (click)="showAdminComponent('products')"
-                routerLink="/admin/products"
-                routerLinkActive="active">
-                <i class="fab fa-codepen icon"></i>Sản phẩm
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div class="col-md-10 col-lg-10 overflow-auto">
-        <!--
-        <ng-container [ngSwitch]="adminComponent">
-          <app-order-admin *ngSwitchCase="'orders'"></app-order-admin>
-          <app-product-admin *ngSwitchCase="'products'"></app-product-admin>
-          <app-category-admin *ngSwitchCase="'categories'"></app-category-admin>                    
-        </ng-container>
-        -->
-        <router-outlet></router-outlet>
+  <header class="header bg-success text-white d-flex justify-content-between align-items-center p-2">
+    <h1 class="header-title m-0">TRANG QUẢN LÝ</h1>
+    <button class="btn btn-danger btn-sm" (click)="logout()">Đăng xuất</button>
+  </header>
+  <div class="row">
+    <nav id="sidebar" class="col-md-2 col-lg-2 d-md-block bg-light sidebar p-3" [ngbCollapse]="isCollapsed">
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" (click)="showAdminComponent('orders')" routerLink="/admin/orders"
+              routerLinkActive="active">
+              <i class="fas fa-boxes icon"></i> Đơn hàng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="showAdminComponent('categories')" routerLink="/admin/categories"
+              routerLinkActive="active">
+              <i class="fas fa-tags icon"></i> Danh mục sản phẩm
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="showAdminComponent('products')" routerLink="/admin/products"
+              routerLinkActive="active">
+              <i class="fas fa-cubes icon"></i> Sản phẩm
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
+    <main class="col-md-10 col-lg-10 overflow-auto p-3">
+      <button class="btn btn-primary mb-2" (click)="isCollapsed = !isCollapsed">
+        Toggle Sidebar
+      </button>
+      <router-outlet></router-outlet>
+    </main>
   </div>
+</div>

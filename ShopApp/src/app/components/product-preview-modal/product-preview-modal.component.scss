@@ -1,0 +1,33 @@
+.product {
+  &__image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  &__description {
+    color: rgb(145, 149, 170);
+  }
+
+  &__pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__price {
+    font-weight: bold;
+    color: rgb(132, 132, 132);
+    font-size: 20px;
+  }
+
+  &__sale-price {
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+  }
+
+  &__discount {
+    color: green;
+  }
+}

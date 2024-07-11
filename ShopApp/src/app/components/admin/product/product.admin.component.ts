@@ -39,14 +39,14 @@ export class ProductAdminComponent implements OnInit {
       this.currentPage = 0;
       this.itemsPerPage = 12;
       //Mediocre Iron Wallet
-      debugger
+      
       this.getProducts(this.keyword.trim(), this.selectedCategoryId, this.currentPage, this.itemsPerPage);
     }
     getProducts(keyword: string, selectedCategoryId: number, page: number, limit: number) {
-      debugger
+      
       this.productService.getProducts(keyword, selectedCategoryId, page, limit).subscribe({
         next: (response: any) => {
-          debugger
+          
           response.products.forEach((product: Product) => {                      
             if (product) {
               product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
@@ -57,16 +57,16 @@ export class ProductAdminComponent implements OnInit {
           this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
         },
         complete: () => {
-          debugger;
+          ;
         },
         error: (error: any) => {
-          debugger;
+          ;
           console.error('Error fetching products:', error);
         }
       });    
     }
     onPageChange(page: number) {
-      debugger;
+      ;
       this.currentPage = page < 0 ? 0 : page;
       localStorage.setItem('currentProductAdminPage', String(this.currentPage));     
       this.getProducts(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
@@ -89,14 +89,14 @@ export class ProductAdminComponent implements OnInit {
     
     // Hàm xử lý sự kiện khi thêm mới sản phẩm
     insertProduct() {
-      debugger
+      
       // Điều hướng đến trang detail-product với productId là tham số
       this.router.navigate(['/admin/products/insert']);
     } 
 
     // Hàm xử lý sự kiện khi sản phẩm được bấm vào
     updateProduct(productId: number) {
-      debugger
+      
       // Điều hướng đến trang detail-product với productId là tham số
       this.router.navigate(['/admin/products/update', productId]);
     }  
@@ -104,18 +104,18 @@ export class ProductAdminComponent implements OnInit {
       const confirmation = window
       .confirm('Are you sure you want to delete this product?');
       if (confirmation) {
-        debugger
+        
         this.productService.deleteProduct(product.id).subscribe({
           next: (response: any) => {
-            debugger 
+             
             alert('Xóa thành công')
             location.reload();          
           },
           complete: () => {
-            debugger;          
+            ;          
           },
           error: (error: any) => {
-            debugger;
+            ;
             alert(error.error)
             console.error('Error fetching products:', error);
           }

@@ -15,11 +15,12 @@ import { UpdateCategoryAdminComponent } from './category/update/update.category.
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AdminComponent,
-    OrderAdminComponent,    
+    OrderAdminComponent,
     ProductAdminComponent,
     CategoryAdminComponent,
     //sub-components
@@ -33,7 +34,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     AdminRoutingModule, // import routes,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ]
 })
 export class AdminModule {}

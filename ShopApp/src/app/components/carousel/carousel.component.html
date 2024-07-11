@@ -1,0 +1,6 @@
+<!-- carousel.component.html -->
+<owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let slide of slidesStore">
+        <img [src]="slide.img" [alt]="slide.alt">
+    </ng-template>
+</owl-carousel-o>

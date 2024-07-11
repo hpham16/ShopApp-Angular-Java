@@ -45,11 +45,11 @@ export class UpdateProductAdminComponent implements OnInit {
   getCategories(page: number, limit: number) {
     this.categoryService.getCategories(page, limit).subscribe({
       next: (categories: Category[]) => {
-        debugger
+        
         this.categories = categories;
       },
       complete: () => {
-        debugger;
+        ;
       },
       error: (error: any) => {
         console.error('Error fetching categories:', error);
@@ -83,20 +83,20 @@ export class UpdateProductAdminComponent implements OnInit {
     };
     this.productService.updateProduct(this.product.id, updateProductDTO).subscribe({
       next: (response: any) => {  
-        debugger        
+                
       },
       complete: () => {
-        debugger;
+        ;
         this.router.navigate(['/admin/products']);        
       },
       error: (error: any) => {
-        debugger;
+        ;
         console.error('Error fetching products:', error);
       }
     });  
   }
   showImage(index: number): void {
-    debugger
+    
     if (this.product && this.product.product_images && 
         this.product.product_images.length > 0) {
       // Đảm bảo index nằm trong khoảng hợp lệ        
@@ -110,17 +110,17 @@ export class UpdateProductAdminComponent implements OnInit {
     }
   }
   thumbnailClick(index: number) {
-    debugger
+    
     // Gọi khi một thumbnail được bấm
     this.currentImageIndex = index; // Cập nhật currentImageIndex
   }  
   nextImage(): void {
-    debugger
+    
     this.showImage(this.currentImageIndex + 1);
   }
 
   previousImage(): void {
-    debugger
+    
     this.showImage(this.currentImageIndex - 1);
   }  
   onFileChange(event: any) {
@@ -135,7 +135,7 @@ export class UpdateProductAdminComponent implements OnInit {
     this.images = files;
     this.productService.uploadImages(this.productId, this.images).subscribe({
       next: (imageResponse) => {
-        debugger
+        
         // Handle the uploaded images response if needed              
         console.log('Images uploaded successfully:', imageResponse);
         this.images = [];       
