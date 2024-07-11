@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://shopapp-angular-java-production-738c.up.railway.app/api/v1",
+    "target": "http://shopapp-angular-java-production-738c.up.railway.app",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
