@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    apiBaseUrl: '/api/v1',
+    apiBaseUrl: 'http://shopapp-angular-java-production-738c.up.railway.app/api/v1',
     firebaseConfig: {
       apiKey: "AIzaSyAVq3SoZVAvqJOBT2Mn3_npXapgLscHqvg",
       authDomain: "vnvtapp.firebaseapp.com",
