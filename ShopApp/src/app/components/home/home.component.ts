@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { Category } from '../../models/category';
 import { Router } from '@angular/router';
@@ -22,11 +22,14 @@ export class HomeComponent implements OnInit {
   visiblePages: number[] = [];
   keyword: string = "";
 
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router
   ) { }
+
+
 
   ngOnInit() {
     this.currentPage = Number(localStorage.getItem('currentProductPage')) || 0;

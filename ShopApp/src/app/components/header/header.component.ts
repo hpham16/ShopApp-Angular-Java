@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
-import { ActivatedRoute, Router } from '@angular/router';
-import { TokenService } from '../../services/token.service';
-import { UserResponse } from '../../responses/user/user.response';
-import { LoginComponent } from '../login/login.component';
+import { Router } from '@angular/router';
 import { NgbModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { UserResponse } from '../../responses/user/user.response';
+import { TokenService } from '../../services/token.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   userResponse?: UserResponse | null;
   isPopoverOpen = false;
   activeNavItem: number = 0;
-
+  isScrolled = false;
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
@@ -27,6 +27,11 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 0;
   }
 
   togglePopover(p: NgbPopover): void {
@@ -54,6 +59,7 @@ export class HeaderComponent implements OnInit {
 
 
   setActiveNavItem(index: number) {
+    console.log(index)
     this.activeNavItem = index;
     //alert(this.activeNavItem);
   }

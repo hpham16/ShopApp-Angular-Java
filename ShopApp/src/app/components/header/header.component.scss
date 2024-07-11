@@ -2,6 +2,14 @@
   z-index: 1030; // Ensure the header is above other content
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  .navbar {
+    transition: opacity 0.3s ease;
+
+    &.scrolled {
+      opacity: 0.6;
+    }
+  }
+
   .navbar-brand {
     color: white;
     font-weight: bold;
@@ -51,6 +59,11 @@
 
   .popover {
     max-width: 200px;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
   }
 }
 

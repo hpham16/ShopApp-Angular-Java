@@ -1,145 +1,211 @@
 //đây là trang chi tiết sp
 .intro-section {
-    color: rgb(98, 98, 98);
-    padding: 20px;
-    text-align: center;
+  color: rgb(98, 98, 98);
+  padding: 20px;
+  text-align: center;
 }
 
 .product-image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
+
 .thumbnail-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .thumbnail-item {
-    width: 120px;
-    height: 120px;
-    margin-right: 5px;
-    /* Thêm khoảng cách ngang giữa các ảnh */
+  width: 120px;
+  height: 120px;
+  margin-right: 5px;
+  /* Thêm khoảng cách ngang giữa các ảnh */
 }
 
 .thumbnail-item:last-child {
-    margin-right: 0;
-    /* Xóa khoảng cách ngang ở ảnh cuối cùng */
+  margin-right: 0;
+  /* Xóa khoảng cách ngang ở ảnh cuối cùng */
 }
 
 h3 {
-    font-weight: bold;
-    font-size: 1.7em; /* Giảm cỡ chữ xuống 1 xíu */
-    color: rgb(153, 21, 102); /* Màu chữ */
-    background-color: pink; /* Màu nền */
-    padding: 8px 15px; /* Kích thước lớn hơn cho nút */
-    border-radius: 20px; /* Góc cong lớn hơn */
-    text-transform: uppercase; /* Chuyển đổi chữ thành HOA */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ nhẹ */
-    display: inline-block; /* Để khung bao quanh nó gọn hơn */
-    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mềm mại */
-    margin: 0; /* Loại bỏ margin mặc định */
-    border: 2px solid transparent; /* Khung biên trong suốt ban đầu */
+  font-weight: bold;
+  font-size: 1.7em;
+  /* Giảm cỡ chữ xuống 1 xíu */
+  color: rgb(153, 21, 102);
+  /* Màu chữ */
+  background-color: pink;
+  /* Màu nền */
+  padding: 8px 15px;
+  /* Kích thước lớn hơn cho nút */
+  border-radius: 20px;
+  /* Góc cong lớn hơn */
+  text-transform: uppercase;
+  /* Chuyển đổi chữ thành HOA */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Hiệu ứng bóng đổ nhẹ */
+  display: inline-block;
+  /* Để khung bao quanh nó gọn hơn */
+  transition: all 0.3s ease;
+  /* Hiệu ứng chuyển đổi mềm mại */
+  margin: 0;
+  /* Loại bỏ margin mặc định */
+  border: 2px solid transparent;
+  /* Khung biên trong suốt ban đầu */
 }
 
 h3:hover {
-    background-color: #ff6b6b; /* Màu nền thay đổi khi di chuột qua */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ lớn hơn khi di chuột qua */
-    border-color: #ff6b6b; /* Màu khung biên thay đổi khi di chuột qua */
+  background-color: #ff6b6b;
+  /* Màu nền thay đổi khi di chuột qua */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  /* Hiệu ứng bóng đổ lớn hơn khi di chuột qua */
+  border-color: #ff6b6b;
+  /* Màu khung biên thay đổi khi di chuột qua */
 }
 
 
 .thumbnail-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .thumbnail-item.active {
-    border: 2px solid white;
+  border: 2px solid white;
 }
+
 .product-details {
-    color: rgb(88, 88, 88);
-    padding: 20px;
+  color: rgb(88, 88, 88);
+  padding: 20px;
 }
 
 .product-actions {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
 }
 
 .product-actions button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 //chỗ số lượng
 
 
-  .product-quantity {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      margin-top: 20px;
-  }
+.product-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
 
 /* Định dạng wrapper chứa nút và input */
 .border-wrapper {
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  
-  /* Định dạng nút giảm */
-  .decrease {
-    background-color: #FF7F7F; /* Màu đỏ nhạt */
-    color: #FFF;
-    font-size: 24px; /* Tăng kích thước của dấu - */
-    font-weight: bold; /* In đậm phần text */
-    cursor: pointer;
-    padding: 10px 18px; /* Điều chỉnh khoảng cách */
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .decrease:hover {
-    background-color: #FF5252; /* Màu đỏ sáng khi hover */
-  }
-  
-  /* Định dạng input */
-  .product-quantity input {
-    background-color: rgb(255,242,248);
-    color: #555;
-    font-size: 20px; /* Tăng kích thước của input */
-    text-align: center;
-    font-weight: bold;
-    width: 60px; /* Tăng chiều rộng của input */
-    padding: 12px 0;
-    border: none;
-  }
-  
-  /* Định dạng nút tăng */
-  .increase {
-    background-color: #32CD32; /* Màu xanh lá cây */
-    color: #FFF;
-    font-size: 24px; /* Tăng kích thước của dấu + */
-    font-weight: bold; /* In đậm phần text */
-    cursor: pointer;
-    padding: 10px 18px; /* Điều chỉnh khoảng cách */
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .increase:hover {
-    background-color: #2E8B57; /* Màu xanh sáng khi hover */
-  }
-  
-  
-  
-  
-  
-  
-  
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Định dạng nút giảm */
+.decrease {
+  background-color: #FF7F7F;
+  /* Màu đỏ nhạt */
+  color: #FFF;
+  font-size: 24px;
+  /* Tăng kích thước của dấu - */
+  font-weight: bold;
+  /* In đậm phần text */
+  cursor: pointer;
+  padding: 10px 18px;
+  /* Điều chỉnh khoảng cách */
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.decrease:hover {
+  background-color: #FF5252;
+  /* Màu đỏ sáng khi hover */
+}
+
+/* Định dạng input */
+.product-quantity input {
+  background-color: rgb(255, 242, 248);
+  color: #555;
+  font-size: 20px;
+  /* Tăng kích thước của input */
+  text-align: center;
+  font-weight: bold;
+  width: 60px;
+  /* Tăng chiều rộng của input */
+  padding: 12px 0;
+  border: none;
+}
+
+/* Định dạng nút tăng */
+.increase {
+  background-color: #32CD32;
+  /* Màu xanh lá cây */
+  color: #FFF;
+  font-size: 24px;
+  /* Tăng kích thước của dấu + */
+  font-weight: bold;
+  /* In đậm phần text */
+  cursor: pointer;
+  padding: 10px 18px;
+  /* Điều chỉnh khoảng cách */
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.increase:hover {
+  background-color: #2E8B57;
+  /* Màu xanh sáng khi hover */
+}
+
+
+
+
+
+
+// Xu huong moi
+.container {
+  margin-top: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-image {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+}
+
+.product-info {
+  margin-top: 15px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e91e63;
+}
+
+a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #2196f3;
+  text-decoration: none;
+}
