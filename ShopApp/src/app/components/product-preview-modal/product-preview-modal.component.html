@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ product.name }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <img [src]="product.url" alt="Product Image" class="product__image">
+  <p class="product__description">{{ product.description }}</p>
+  <div class="product__pricing">
+    <h4 class="product__price">Giá: {{ product.price | number:'1.0-0' }} VNĐ</h4>
+    <h4 class="product__sale-price">Giá Khuyến Mãi: {{ salePrice(product.price, product.discount) | number:'1.0-0' }}
+      VNĐ</h4>
+    <p class="product__discount">Giảm: {{ product.discount }}%</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel click')">Đóng</button>
+  <button type="button" class="btn btn-primary" (click)="addToCart(product)">Thêm vào giỏ hàng</button>
+</div>

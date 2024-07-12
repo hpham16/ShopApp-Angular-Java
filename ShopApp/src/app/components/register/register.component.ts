@@ -1,8 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../services/user.service';
 import { RegisterDTO } from '../../dtos/user/register.dto';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,18 +12,16 @@ import { RegisterDTO } from '../../dtos/user/register.dto';
 })
 export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
-  // Khai báo các biến tương ứng với các trường dữ liệu trong form
   phoneNumber: string;
   password: string;
   retypePassword: string;
   fullName: string;
-  address:string;
+  address: string;
   isAccepted: boolean;
   dateOfBirth: Date;
   showPassword: boolean = false;
 
-  constructor(private router: Router, private userService: UserService){
-    debugger
+  constructor(public activeModal: NgbActiveModal, private router: Router, private userService: UserService) {
     this.phoneNumber = '';
     this.password = '';
     this.retypePassword = '';
@@ -30,65 +30,56 @@ export class RegisterComponent {
     this.isAccepted = true;
     this.dateOfBirth = new Date();
     this.dateOfBirth.setFullYear(this.dateOfBirth.getFullYear() - 18);
-    //inject
+  }
 
-  }
-  onPhoneNumberChange(){
-    console.log(`Phone typed: ${this.phoneNumber}`)
-    //how to validate ? phone must be at least 6 characters
-  }
-  register() {
-    const message = `phone: ${this.phoneNumber}`+
-                    `password: ${this.password}`+
-                    `retypePassword: ${this.retypePassword}`+
-                    `address: ${this.address}`+
-                    `fullName: ${this.fullName}`+
-                    `isAccepted: ${this.isAccepted}`+
-                    `dateOfBirth: ${this.dateOfBirth}`;
-    //alert(message);
-    debugger
-    
-    const registerDTO:RegisterDTO = {
-        "fullname": this.fullName,
-        "phone_number": this.phoneNumber,
-        "address": this.address,
-        "password": this.password,
-        "retype_password": this.retypePassword,
-        "date_of_birth": this.dateOfBirth,
-        "facebook_account_id": 0,
-        "google_account_id": 0,
-        "role_id": 1
+  onPhoneNumberChange() {
+    console.log(`Phone typed: ${this.phoneNumber}`);
+    if (this.phoneNumber.length < 6) {
+      this.registerForm.form.controls['phone'].setErrors({ 'minlength': true });
+    } else {
+      this.registerForm.form.controls['phone'].setErrors(null);
     }
-    this.userService.register(registerDTO).subscribe({
-        next: (response: any) => {
-          debugger
-          const confirmation = window
-            .confirm('Đăng ký thành công, mời bạn đăng nhập. Bấm "OK" để chuyển đến trang đăng nhập.');
-          if (confirmation) {
-            this.router.navigate(['/login']);
-          }
-        },
-        complete: () => {
-          debugger
-        },
-        error: (error: any) => {        
-          debugger  
-          alert(error?.error?.message ?? '')          
-        }
-    })   
   }
+
+  register() {
+    const registerDTO: RegisterDTO = {
+      fullname: this.fullName,
+      phone_number: this.phoneNumber,
+      address: this.address,
+      password: this.password,
+      retype_password: this.retypePassword,
+      date_of_birth: this.dateOfBirth,
+      facebook_account_id: 0,
+      google_account_id: 0,
+      role_id: 1
+    };
+
+    this.userService.register(registerDTO).subscribe({
+      next: (response: any) => {
+        const confirmation = window.confirm('Đăng ký thành công, mời bạn đăng nhập. Bấm "OK" để chuyển đến trang đăng nhập.');
+        if (confirmation) {
+          this.activeModal.close();
+          this.router.navigate(['/login']);
+        }
+      },
+      error: (error: any) => {
+        alert(error?.error?.message ?? '');
+      }
+    });
+  }
+
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
-  //how to check password match ?
-  checkPasswordsMatch() {    
+
+  checkPasswordsMatch() {
     if (this.password !== this.retypePassword) {
-      this.registerForm.form.controls['retypePassword']
-            .setErrors({ 'passwordMismatch': true });
+      this.registerForm.form.controls['retypePassword'].setErrors({ 'passwordMismatch': true });
     } else {
       this.registerForm.form.controls['retypePassword'].setErrors(null);
     }
   }
+
   checkAge() {
     if (this.dateOfBirth) {
       const today = new Date();
@@ -107,4 +98,3 @@ export class RegisterComponent {
     }
   }
 }
-

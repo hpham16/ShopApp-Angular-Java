@@ -1,3 +1,191 @@
-.footer-description {
-    color: rgb(15, 29, 98);
+#footer {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    .email_subscribe_section {
+        background-color: #fce4ec;
+        padding: 20px 0;
+
+        .container.wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .text_tagline {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+            text-transform: uppercase;
+        }
+
+        .form_area {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .btn {
+            background-color: #000;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+    }
+
+    .categories_section {
+        margin: 20px 0;
+
+        .container.wrapper {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            flex-basis: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cat_wrapper {
+            flex-basis: 23%;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .categories_title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subcategories_content {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .subcategories_content li {
+            margin-bottom: 5px;
+        }
+    }
+    .categories_content {
+        display: flex;  
+        justify-content: start;
+        flex-wrap: wrap;
+    }
+    .categories_content>li {
+        list-style-type: none;
+    }
+
+    .footer-bottom {
+        background-color: #f8f8f8;
+        padding: 20px 0;
+
+        .container.wrapper {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex-basis: 23%;
+            min-width: 200px;
+            margin-bottom: 20px;
+
+            .title {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    margin-bottom: 5px;
+                    a {
+                        text-decoration: none;
+                        color: black;
+                    }
+                }
+            }
+
+            .payment {
+                display: flex;
+                flex-wrap: wrap;
+
+                li {
+                    margin-right: 10px;
+                }
+
+                img {
+                    width: 48px;
+                    height: auto;
+                }
+            }
+
+            .app-links {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 100px;
+                    height: auto;
+                    margin-right: 10px;
+                }
+
+                a img {
+                    width: auto;
+                    height: 40px;
+                }
+            }
+
+            img {
+                width: 100px;
+                height: auto;
+            }
+        }
+    }
+
+    .bottom-footer {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px 0;
+
+        .second_foot_logo_section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .m-20 {
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            .silver {
+                color: #999;
+            }
+        }
+    }
+
+    .clear {
+        clear: both;
+    }
 }

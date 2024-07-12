@@ -1,0 +1,37 @@
+<div class="comment-section">
+  <h3>Comments</h3>
+  <div *ngFor="let comment of comments" class="comment-card card mb-3">
+    <div class="card-body">
+      <h5 class="card-title"><strong>{{ comment.userId }}</strong></h5>
+      <p class="card-text">{{ comment.content }}</p>
+      <p class="text-muted"><small>{{ comment.createdAt | date:'short' }}</small></p>
+      <button (click)="replyTo(comment.id)" class="btn btn-link">Reply</button>
+      <div *ngIf="replyingTo === comment.id">
+        <form [formGroup]="replyForm" (ngSubmit)="addReply(comment.id)">
+          <div class="form-group">
+            <textarea formControlName="content" placeholder="Your reply" class="form-control mb-2"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Reply</button>
+        </form>
+      </div>
+      <div *ngFor="let reply of comment.replies" class="reply-card card mt-2">
+        <div class="card-body">
+          <h6 class="card-title"><strong>{{ reply.userId }}</strong></h6>
+          <p class="card-text">{{ reply.content }}</p>
+          <p class="text-muted"><small>{{ reply.createdAt | date:'short' }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="userResponse">
+    <h3>Add a Comment</h3>
+    <form [formGroup]="commentForm" (ngSubmit)="addComment()" class="mt-3">
+      <div class="form-group">
+        <textarea formControlName="content" placeholder="Your comment" class="form-control mb-2"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </ng-container>
+
+</div>

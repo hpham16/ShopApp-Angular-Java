@@ -32,7 +32,7 @@ export class OrderAdminComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    debugger
+    
     this.currentPage = Number(localStorage.getItem('currentOrderAdminPage')) || 0; 
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
   }
@@ -40,29 +40,29 @@ export class OrderAdminComponent implements OnInit{
     this.currentPage = 0;
     this.itemsPerPage = 12;
     //Mediocre Iron Wallet
-    debugger
+    
     this.getAllOrders(this.keyword.trim(), this.currentPage, this.itemsPerPage);
   }
   getAllOrders(keyword: string, page: number, limit: number) {
-    debugger
+    
     this.orderService.getAllOrders(keyword, page, limit).subscribe({
       next: (response: any) => {
-        debugger        
+                
         this.orders = response.orders;
         this.totalPages = response.totalPages;
         this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
       },
       complete: () => {
-        debugger;
+        ;
       },
       error: (error: any) => {
-        debugger;
+        ;
         console.error('Error fetching products:', error);
       }
     });    
   }
   onPageChange(page: number) {
-    debugger;
+    ;
     this.currentPage = page < 0 ? 0 : page;
     localStorage.setItem('currentOrderAdminPage', String(this.currentPage));         
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
@@ -87,24 +87,24 @@ export class OrderAdminComponent implements OnInit{
     const confirmation = window
       .confirm('Are you sure you want to delete this order?');
     if (confirmation) {
-      debugger
+      
       this.orderService.deleteOrder(id).subscribe({
         next: (response: any) => {
-          debugger 
+           
           location.reload();          
         },
         complete: () => {
-          debugger;          
+          ;          
         },
         error: (error: any) => {
-          debugger;
+          ;
           console.error('Error fetching products:', error);
         }
       });    
     }
   }
   viewDetails(order:OrderResponse) {
-    debugger
+    
     this.router.navigate(['/admin/orders', order.id]);
   }
   

@@ -10,5 +10,5 @@ export interface Product {
   product_images: ProductImage[];
 }
 
-  
+
   

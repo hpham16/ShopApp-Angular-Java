@@ -1,0 +1,7 @@
+<!-- product-item.component.html -->
+<div class="product-item">
+  <img [src]="product.url" alt="Product Image" class="product-image">
+  <h4 class="product-name cursor-pointer" (click)="onProductClick(product.id)">{{ product.name }}</h4>
+  <p class="product-description cursor-pointer">{{ product.description }}</p>
+  <h4 class="product-price">Giá: {{ product.price | number:'1.0-0'}} VNĐ</h4>
+</div>

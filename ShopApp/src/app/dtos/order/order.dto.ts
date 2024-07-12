@@ -1,12 +1,3 @@
-import { IsString, 
-  IsNotEmpty, 
-  IsPhoneNumber, 
-  IsNumber, ArrayMinSize, 
-  ValidateNested, 
-  Length 
-} from 'class-validator';
-import { Type } from 'class-transformer';
-import { CartItemDTO } from './cart.item.dto';
 
 export class OrderDTO {
   user_id: number;
@@ -16,13 +7,13 @@ export class OrderDTO {
   email: string;
 
   phone_number: string;
-  
+
   address: string;
-  
+
   status: string;
 
   note: string;
-  
+
   total_money?: number;
 
   shipping_method: string;

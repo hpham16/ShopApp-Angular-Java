@@ -42,11 +42,11 @@ export class OrderDetailComponent implements OnInit {
   }
   
   getOrderDetails(): void {
-    debugger
+    
     const orderId = Number(this.route.snapshot.paramMap.get('orderId'));
     this.orderService.getOrderById(orderId).subscribe({
       next: (response: any) => {        
-        debugger;       
+        ;       
         this.orderResponse.id = response.id;
         this.orderResponse.user_id = response.user_id;
         this.orderResponse.fullname = response.fullname;
@@ -78,10 +78,10 @@ export class OrderDetailComponent implements OnInit {
         this.orderResponse.total_money = response.total_money;
       },
       complete: () => {
-        debugger;        
+        ;        
       },
       error: (error: any) => {
-        debugger;
+        ;
         console.error('Error fetching detail:', error);
       }
     });
