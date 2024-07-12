@@ -62,7 +62,7 @@ The E-Commerce Platform is a comprehensive online shopping solution built with J
 
 The platform follows a microservices architecture with a clear separation of concerns between the frontend and backend. The backend provides RESTful APIs consumed by the Angular frontend.
 
-![Architecture Diagram](path/to/architecture-diagram.png)
+![Architecture Diagram](architecture-diagram.jpg)
 
 ## Installation
 
@@ -77,11 +77,11 @@ The platform follows a microservices architecture with a clear separation of con
 
 1. Clone the repository:
    \`\`\`bash
-   git clone https://github.com/your-username/e-commerce-backend.git
+   git clone https://github.com/hpham16/ShopApp-Angular-Java.git
    \`\`\`
 2. Navigate to the backend directory:
    \`\`\`bash
-   cd e-commerce-backend
+   cd ShopApp-backend
    \`\`\`
 3. Build the project:
    \`\`\`bash
@@ -96,11 +96,11 @@ The platform follows a microservices architecture with a clear separation of con
 
 1. Clone the repository:
    \`\`\`bash
-   git clone https://github.com/your-username/e-commerce-frontend.git
+   git clone https://github.com/hpham16/ShopApp-Angular-Java.git
    \`\`\`
 2. Navigate to the frontend directory:
    \`\`\`bash
-   cd e-commerce-frontend
+   cd ShopApp
    \`\`\`
 3. Install dependencies:
    \`\`\`bash
