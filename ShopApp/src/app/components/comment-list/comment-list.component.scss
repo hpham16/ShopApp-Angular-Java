@@ -2,38 +2,45 @@
   margin-top: 20px;
 }
 
-.comment-card, .reply-card {
+.comment-card,
+.reply-card {
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 10px;
 }
 
-.comment-card .card-body, .reply-card .card-body {
+.comment-card .card-body,
+.reply-card .card-body {
   padding: 10px;
 }
 
-.comment-card .card-title, .reply-card .card-title {
+.comment-card .card-title,
+.reply-card .card-title {
   font-size: 1.25rem;
   margin-bottom: 5px;
 }
 
-.comment-card .card-text, .reply-card .card-text {
+.comment-card .card-text,
+.reply-card .card-text {
   font-size: 1rem;
   margin-bottom: 10px;
 }
 
-.comment-card .text-muted, .reply-card .text-muted {
+.comment-card .text-muted,
+.reply-card .text-muted {
   font-size: 0.875rem;
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   border-radius: 4px;
   border: 1px solid #ccc;
   padding: 10px;
   font-size: 1rem;
 }
 
-.form-group input:focus, .form-group textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus {
   border-color: #007bff;
 }
 
@@ -58,4 +65,45 @@
 .btn-primary:hover {
   background-color: #0056b3;
   border-color: #0056b3;
+}
+
+/* comment-list.component.scss */
+.comment-card {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.comment-card .card-body {
+  padding: 0;
+}
+
+.reply-card {
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }

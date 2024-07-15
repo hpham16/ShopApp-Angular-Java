@@ -1,10 +1,14 @@
 <div class="comment-section">
   <h3>Comments</h3>
   <div *ngFor="let comment of comments" class="comment-card card mb-3">
-    <div class="card-body">
-      <h5 class="card-title"><strong>{{ comment.userId }}</strong></h5>
+    <div class="card-body p-2">
+      <div class="d-flex align-items-center mb-2">
+        <img [src]="comment.user.avatar_url || 'assets/img/user-logo.svg'" alt="Avatar" class="rounded-circle mr-2"
+          width="30" height="30">
+        <h5 class="card-title mb-0"><strong>{{ comment.user.fullname }}</strong></h5>
+      </div>
       <p class="card-text">{{ comment.content }}</p>
-      <p class="text-muted"><small>{{ comment.createdAt | date:'short' }}</small></p>
+      <p class="text-muted"><small>{{ comment.updated_at | date:'short' }}</small></p>
       <button (click)="replyTo(comment.id)" class="btn btn-link">Reply</button>
       <div *ngIf="replyingTo === comment.id">
         <form [formGroup]="replyForm" (ngSubmit)="addReply(comment.id)">
@@ -12,17 +16,26 @@
             <textarea formControlName="content" placeholder="Your reply" class="form-control mb-2"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Reply</button>
+          <button type="button" class="btn btn-secondary ml-1">Cancel</button>
         </form>
       </div>
       <div *ngFor="let reply of comment.replies" class="reply-card card mt-2">
         <div class="card-body">
-          <h6 class="card-title"><strong>{{ reply.userId }}</strong></h6>
+          <div class="d-flex align-items-center mb-2">
+            <img [src]="reply.user.avatar_url || 'assets/img/user-logo.svg'" alt="Avatar" class="rounded-circle mr-2"
+              width="30" height="30">
+            <h6 class="card-title mb-0"><strong>{{ reply.user.fullname }}</strong></h6>
+          </div>
           <p class="card-text">{{ reply.content }}</p>
-          <p class="text-muted"><small>{{ reply.createdAt | date:'short' }}</small></p>
+          <p class="text-muted"><small>{{ reply.updated_at | date:'short' }}</small></p>
         </div>
       </div>
     </div>
   </div>
+
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true"
+    [ellipses]="false" [boundaryLinks]="true">
+  </ngb-pagination>
 
   <ng-container *ngIf="userResponse">
     <h3>Add a Comment</h3>

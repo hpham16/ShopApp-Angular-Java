@@ -1,16 +1,16 @@
+import { User } from "./user";
 
 export interface Comment {
   id: number;
-  userId: string;
   content: string;
-  createdAt: Date;
+  user: User;
+  updated_at: Date;
   replies: Reply[];
 }
 
 export interface Reply {
   id: number;
-  commentId: number;
-  userId: string;
   content: string;
-  createdAt: Date;
+  user: User;
+  updated_at: Date;
 }
