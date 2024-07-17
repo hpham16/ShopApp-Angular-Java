@@ -7,6 +7,11 @@ import { environment } from 'src/environments/environment';
 
 @Directive()
 export abstract class AppPage implements OnInit, OnDestroy, OnChanges, DoCheck, AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit {
+  page: number = 1;
+  totalItems: number = 0;
+  numberToShow: number[] = [15, 30, 50, 100];
+  pageSize: number = this.numberToShow[0];
+  maxSize: number = 5;
 
   ranges: any = {
     "Today": [new Date(), new Date()],
@@ -71,7 +76,7 @@ export abstract class AppPage implements OnInit, OnDestroy, OnChanges, DoCheck, 
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    this.ngUnsubscribe.next();
+    //this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
@@ -99,18 +104,6 @@ export abstract class AppPage implements OnInit, OnDestroy, OnChanges, DoCheck, 
     return throwError(error || 'Có lỗi xảy, Vui lòng kiểm tra lại !');
   }
 
-  handleError(errors?: any, callBack?: Function) {
-    let message: string = 'Has Error Please Check Again !';
-    let title: string = '';
-    if (errors instanceof HttpErrorResponse) {
-      message = errors.message;
-      title = errors.statusText;
-    }
-    return callBack({ message, title });
-    // this._toastService.error(message, title, { positionClass: 'toast-bottom-right' });
-  }
-
-
   autocomplete = (time: number, callBack: Function) => (source$: Observable<any>) =>
     source$.pipe(
       debounceTime(time),
@@ -119,12 +112,4 @@ export abstract class AppPage implements OnInit, OnDestroy, OnChanges, DoCheck, 
         callBack(...args).pipe(takeUntil(source$.pipe(skip(1))))
       )
     )
-
-  createMoment(date?: any) {
-    if (!!date) {
-      return dayjs(date);
-    } else {
-      return dayjs();
-    }
-  }
 }
