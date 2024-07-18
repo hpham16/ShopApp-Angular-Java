@@ -13,6 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -110,5 +112,21 @@ public class OrderController {
                 .orders(orderResponses)
                 .totalPages(totalPages)
                 .build());
+    }
+    @GetMapping("/thong-ke-thang")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> ThongKeTheoThang(
+            @RequestParam(defaultValue = "0") int month
+    ) {
+        Order order = orderService.ThongKeTheoThang(month);
+        return ResponseEntity.ok(order);
+    }
+
+
+    @GetMapping("/thong-ke-thang-test")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> thongKeTheoThangTest() {
+        List<Object[]> result = orderService.thongKeDoanhThuTheoThang();
+        return ResponseEntity.ok(result);
     }
 }

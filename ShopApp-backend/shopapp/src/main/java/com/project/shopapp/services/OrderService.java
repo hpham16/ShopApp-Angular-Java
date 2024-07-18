@@ -1,9 +1,6 @@
 package com.project.shopapp.services;
 
-import com.project.shopapp.dtos.CartItemDTO;
-import com.project.shopapp.dtos.OrderDTO;
-import com.project.shopapp.dtos.OrderDetailDTO;
-import com.project.shopapp.dtos.OrderWithDetailsDTO;
+import com.project.shopapp.dtos.*;
 import com.project.shopapp.exceptions.DataNotFoundException;
 import com.project.shopapp.models.*;
 import com.project.shopapp.repositories.OrderDetailRepository;
@@ -152,5 +149,15 @@ public class OrderService implements IOrderService{
     @Override
     public Page<Order> getOrdersByKeyword(String keyword, Pageable pageable) {
         return orderRepository.findByKeyword(keyword, pageable);
+    }
+
+    @Override
+    public Order ThongKeTheoThang(int month) {
+        return orderRepository.ThongKeTheoThang(month);
+    }
+
+    @Override
+    public List<Object[]> thongKeDoanhThuTheoThang() {
+        return orderRepository.thongKeDoanhThuTheoThang();
     }
 }

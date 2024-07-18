@@ -19,6 +19,15 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "OR o.note LIKE %:keyword% " +
             "OR o.email LIKE %:keyword%)")
     Page<Order> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
+
+    @Query("SELECT o FROM Order o WHERE MONTH(o.orderDate) = :month AND o.active = true")
+    Order ThongKeTheoThang(@Param("month") int month);
+
+    @Query("SELECT EXTRACT(MONTH FROM o.orderDate) as Thang, SUM(o.totalMoney) as TongDoanhThu, SUM(od.numberOfProducts) as TongSanPhamBanDuoc " +
+            "FROM Order o LEFT JOIN OrderDetail od ON o.id = od.order.id " +
+            "WHERE o.status = 'shipped' " +
+            "GROUP BY EXTRACT(MONTH FROM o.orderDate)")
+    List<Object[]> thongKeDoanhThuTheoThang();
 }
 /*
 INSERT INTO orders (user_id, fullname, email, phone_number, address, note, status, total_money)
