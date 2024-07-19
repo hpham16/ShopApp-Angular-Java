@@ -13,12 +13,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("${api.prefix}/orders")
@@ -113,20 +112,40 @@ public class OrderController {
                 .totalPages(totalPages)
                 .build());
     }
+
+
+
     @GetMapping("/thong-ke-thang")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> ThongKeTheoThang(
-            @RequestParam(defaultValue = "0") int month
-    ) {
-        Order order = orderService.ThongKeTheoThang(month);
-        return ResponseEntity.ok(order);
+    public ResponseEntity<?> thongKeTheoThangTest(@RequestParam(value = "month", required = false) Integer month) {
+        List<Object[]> result = orderService.thongKeDoanhThuTheoThang(month);
+        List<ThongKeThangDTO> dtoList = result.stream().map(record -> {
+            String monthStr = "" + ((Number) record[0]).intValue();
+            double totalMoney = ((Number) record[1]).doubleValue();
+            Integer numberOfProducts = record[2] != null ? ((Number) record[2]).intValue() : null;
+            return ThongKeThangDTO.builder()
+                    .month(monthStr)
+                    .totalMoney(totalMoney)
+                    .numberOfProducts(numberOfProducts)
+                    .build();
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtoList);
     }
 
-
-    @GetMapping("/thong-ke-thang-test")
+    @GetMapping("/thong-ke-san-pham")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> thongKeTheoThangTest() {
-        List<Object[]> result = orderService.thongKeDoanhThuTheoThang();
-        return ResponseEntity.ok(result);
+    public ResponseEntity<?> thongKeTheoSanPham(@RequestParam(value = "productName", required = false) String productName) {
+        List<Object[]> result = orderService.thongKeDoanhThuTheoSanPham(productName);
+        List<ThongKeSanPhamDTO> dtoList = result.stream().map(record -> {
+            String productNames = (String) record[0];
+            double totalMoney = ((Number) record[1]).doubleValue();
+            Integer numberOfProducts = ((Number) record[2]).intValue();
+            return ThongKeSanPhamDTO.builder()
+                    .productName(productNames)
+                    .totalMoney(totalMoney)
+                    .numberOfProducts(numberOfProducts)
+                    .build();
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtoList);
     }
 }

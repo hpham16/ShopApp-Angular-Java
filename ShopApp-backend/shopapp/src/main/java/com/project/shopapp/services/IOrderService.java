@@ -1,6 +1,5 @@
 package com.project.shopapp.services;
 
-import com.project.shopapp.dtos.MonthlySalesDTO;
 import com.project.shopapp.dtos.OrderDTO;
 import com.project.shopapp.exceptions.DataNotFoundException;
 import com.project.shopapp.models.Order;
@@ -18,5 +17,7 @@ public interface IOrderService {
     Page<Order> getOrdersByKeyword(String keyword, Pageable pageable);
     Order ThongKeTheoThang(int month);
 
-    List<Object[]> thongKeDoanhThuTheoThang();
+    List<Object[]> thongKeDoanhThuTheoThang(Integer month);
+
+    List<Object[]> thongKeDoanhThuTheoSanPham(String productName);
 }

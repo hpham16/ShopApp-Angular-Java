@@ -157,7 +157,20 @@ public class OrderService implements IOrderService{
     }
 
     @Override
-    public List<Object[]> thongKeDoanhThuTheoThang() {
-        return orderRepository.thongKeDoanhThuTheoThang();
+    public List<Object[]> thongKeDoanhThuTheoThang(Integer month) {
+        if (month != null) {
+            return orderRepository.thongKeDoanhThuTheoThangCuaMotThang(month);
+        } else {
+            return orderRepository.thongKeDoanhThuTheoThang();
+        }
+    }
+
+
+    public List<Object[]> thongKeDoanhThuTheoSanPham(String productName) {
+        if (productName != null && !productName.isEmpty()) {
+            return orderRepository.thongKeDoanhThuTheoSanPhamCuaMotSanPham(productName);
+        } else {
+            return orderRepository.thongKeDoanhThuTheoSanPham();
+        }
     }
 }

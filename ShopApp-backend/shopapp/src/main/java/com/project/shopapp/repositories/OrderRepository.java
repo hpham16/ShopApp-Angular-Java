@@ -28,6 +28,26 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "WHERE o.status = 'shipped' " +
             "GROUP BY EXTRACT(MONTH FROM o.orderDate)")
     List<Object[]> thongKeDoanhThuTheoThang();
+
+    @Query("SELECT EXTRACT(MONTH FROM o.orderDate) as Thang, SUM(o.totalMoney) as TongDoanhThu, SUM(od.numberOfProducts) as TongSanPhamBanDuoc " +
+            "FROM Order o LEFT JOIN OrderDetail od ON o.id = od.order.id " +
+            "WHERE o.status = 'shipped' AND EXTRACT(MONTH FROM o.orderDate) = :month " +
+            "GROUP BY EXTRACT(MONTH FROM o.orderDate)")
+    List<Object[]> thongKeDoanhThuTheoThangCuaMotThang(@Param("month") Integer month);
+
+    @Query("SELECT p.name as productName, SUM(o.totalMoney) as totalRevenue, SUM(od.numberOfProducts) as totalQuantitySold " +
+            "FROM OrderDetail od JOIN od.product p JOIN od.order o " +
+            "WHERE o.status = 'shipped' " +
+            "GROUP BY p.name")
+    List<Object[]> thongKeDoanhThuTheoSanPham();
+
+    @Query("SELECT p.name as productName, SUM(o.totalMoney) as totalRevenue, SUM(od.numberOfProducts) as totalQuantitySold " +
+            "FROM OrderDetail od JOIN od.product p JOIN od.order o " +
+            "WHERE o.status = 'shipped' AND p.name ILIKE %:productName% " +
+            "GROUP BY p.name")
+    List<Object[]> thongKeDoanhThuTheoSanPhamCuaMotSanPham(@Param("productName") String productName);
+
+
 }
 /*
 INSERT INTO orders (user_id, fullname, email, phone_number, address, note, status, total_money)
