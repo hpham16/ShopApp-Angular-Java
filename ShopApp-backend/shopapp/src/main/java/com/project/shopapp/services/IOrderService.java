@@ -20,4 +20,7 @@ public interface IOrderService {
     List<Object[]> thongKeDoanhThuTheoThang(Integer month);
 
     List<Object[]> thongKeDoanhThuTheoSanPham(String productName);
+
+    List<Object[]> thongKeDoanhThuTheoDanhMuc(String categoryName);
+
 }

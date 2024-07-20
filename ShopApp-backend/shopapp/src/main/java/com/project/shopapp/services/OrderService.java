@@ -173,4 +173,12 @@ public class OrderService implements IOrderService{
             return orderRepository.thongKeDoanhThuTheoSanPham();
         }
     }
+
+    public List<Object[]> thongKeDoanhThuTheoDanhMuc(String categoryName) {
+        if (categoryName != null && !categoryName.isEmpty()) {
+            return orderRepository.thongKeDoanhThuTheoDanhMucCuaMotDanhMuc(categoryName);
+        } else {
+            return orderRepository.thongKeDoanhThuTheoDanhMuc();
+        }
+    }
 }

@@ -47,7 +47,17 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "GROUP BY p.name")
     List<Object[]> thongKeDoanhThuTheoSanPhamCuaMotSanPham(@Param("productName") String productName);
 
+    @Query("SELECT c.name as categoryName, SUM(o.totalMoney) as totalRevenue, SUM(od.numberOfProducts) as totalQuantitySold " +
+            "FROM OrderDetail od JOIN od.product p JOIN p.category c JOIN od.order o " +
+            "WHERE o.status = 'shipped' " +
+            "GROUP BY c.name")
+    List<Object[]> thongKeDoanhThuTheoDanhMuc();
 
+    @Query("SELECT c.name as categoryName, SUM(o.totalMoney) as totalRevenue, SUM(od.numberOfProducts) as totalQuantitySold " +
+            "FROM OrderDetail od JOIN od.product p JOIN p.category c JOIN od.order o " +
+            "WHERE o.status = 'shipped' AND c.name ILIKE %:categoryName% " +
+            "GROUP BY c.name")
+    List<Object[]> thongKeDoanhThuTheoDanhMucCuaMotDanhMuc(@Param("categoryName") String categoryName);
 }
 /*
 INSERT INTO orders (user_id, fullname, email, phone_number, address, note, status, total_money)

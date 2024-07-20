@@ -148,4 +148,21 @@ public class OrderController {
         }).collect(Collectors.toList());
         return ResponseEntity.ok(dtoList);
     }
+
+    @GetMapping("/thong-ke-danh-muc")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> thongKeTheoDanhMuc(@RequestParam(value = "categoryName", required = false) String categoryName) {
+        List<Object[]> result = orderService.thongKeDoanhThuTheoDanhMuc(categoryName);
+        List<ThongKeDanhMucDTO> dtoList = result.stream().map(record -> {
+            String categoryNames = (String) record[0];
+            double totalMoney = ((Number) record[1]).doubleValue();
+            Integer numberOfProducts = ((Number) record[2]).intValue();
+            return ThongKeDanhMucDTO.builder()
+                    .categoryName(categoryNames)
+                    .totalMoney(totalMoney)
+                    .numberOfProducts(numberOfProducts)
+                    .build();
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(dtoList);
+    }
 }
