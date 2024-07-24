@@ -1,9 +1,13 @@
 package com.project.shopapp.controllers;
 
 import com.project.shopapp.components.LocalizationUtils;
-import com.project.shopapp.dtos.*;
+import com.project.shopapp.dtos.OrderDTO;
+import com.project.shopapp.dtos.ThongKeDanhMucDTO;
+import com.project.shopapp.dtos.ThongKeSanPhamDTO;
+import com.project.shopapp.dtos.ThongKeThangDTO;
 import com.project.shopapp.models.Order;
-import com.project.shopapp.responses.*;
+import com.project.shopapp.responses.OrderListResponse;
+import com.project.shopapp.responses.OrderResponse;
 import com.project.shopapp.services.IOrderService;
 import com.project.shopapp.utils.MessageKeys;
 import jakarta.validation.Valid;
@@ -16,6 +20,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -117,19 +122,28 @@ public class OrderController {
 
     @GetMapping("/thong-ke-thang")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> thongKeTheoThangTest(@RequestParam(value = "month", required = false) Integer month) {
+    public ResponseEntity<List<ThongKeThangDTO>> getRevenueStatistics(@RequestParam(value = "month", required = false) Integer month) {
         List<Object[]> result = orderService.thongKeDoanhThuTheoThang(month);
-        List<ThongKeThangDTO> dtoList = result.stream().map(record -> {
-            String monthStr = "" + ((Number) record[0]).intValue();
-            double totalMoney = ((Number) record[1]).doubleValue();
-            Integer numberOfProducts = record[2] != null ? ((Number) record[2]).intValue() : null;
-            return ThongKeThangDTO.builder()
-                    .month(monthStr)
-                    .totalMoney(totalMoney)
-                    .numberOfProducts(numberOfProducts)
-                    .build();
-        }).collect(Collectors.toList());
+
+        List<ThongKeThangDTO> dtoList = result.stream()
+                .map(this::convertToThongKeThangDTO)
+                .collect(Collectors.toList());
+
         return ResponseEntity.ok(dtoList);
+    }
+
+    private ThongKeThangDTO convertToThongKeThangDTO(Object[] record) {
+        String monthStr = (record[0] != null) ? String.valueOf(((Number) record[0]).intValue()) : "N/A";
+        int year = (record[1] != null) ? ((Number) record[1]).intValue() : 0;
+        double totalMoney = (record[2] != null) ? ((Number) record[2]).doubleValue() : 0.0;
+        Integer numberOfProducts = (record.length > 3 && record[3] != null) ? ((Number) record[3]).intValue() : null;
+
+        return ThongKeThangDTO.builder()
+                .totalMoney(totalMoney)
+                .numberOfProducts(numberOfProducts)
+                .month(monthStr)
+                .year(year)
+                .build();
     }
 
     @GetMapping("/thong-ke-san-pham")

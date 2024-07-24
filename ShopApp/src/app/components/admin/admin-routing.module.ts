@@ -51,6 +51,7 @@ const routes: Routes = [
                 path: 'categories/insert',
                 component: InsertCategoryAdminComponent
             },
+            //report
             {
               path: 'report',
               component: ReportComponent

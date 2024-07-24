@@ -23,16 +23,16 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT o FROM Order o WHERE MONTH(o.orderDate) = :month AND o.active = true")
     Order ThongKeTheoThang(@Param("month") int month);
 
-    @Query("SELECT EXTRACT(MONTH FROM o.orderDate) as Thang, SUM(o.totalMoney) as TongDoanhThu, SUM(od.numberOfProducts) as TongSanPhamBanDuoc " +
+    @Query("SELECT EXTRACT(MONTH FROM o.orderDate) as Thang, EXTRACT(YEAR FROM o.orderDate) as Nam, SUM(o.totalMoney) as TongDoanhThu, SUM(od.numberOfProducts) as TongSanPhamBanDuoc " +
             "FROM Order o LEFT JOIN OrderDetail od ON o.id = od.order.id " +
             "WHERE o.status = 'shipped' " +
-            "GROUP BY EXTRACT(MONTH FROM o.orderDate)")
+            "GROUP BY EXTRACT(MONTH FROM o.orderDate), EXTRACT(YEAR FROM o.orderDate)")
     List<Object[]> thongKeDoanhThuTheoThang();
 
-    @Query("SELECT EXTRACT(MONTH FROM o.orderDate) as Thang, SUM(o.totalMoney) as TongDoanhThu, SUM(od.numberOfProducts) as TongSanPhamBanDuoc " +
+    @Query("SELECT EXTRACT(MONTH FROM o.orderDate) as Thang, EXTRACT(YEAR FROM o.orderDate) as Nam, SUM(o.totalMoney) as TongDoanhThu, SUM(od.numberOfProducts) as TongSanPhamBanDuoc " +
             "FROM Order o LEFT JOIN OrderDetail od ON o.id = od.order.id " +
-            "WHERE o.status = 'shipped' AND EXTRACT(MONTH FROM o.orderDate) = :month " +
-            "GROUP BY EXTRACT(MONTH FROM o.orderDate)")
+            "WHERE o.status = 'shipped' AND (:month IS NULL OR EXTRACT(MONTH FROM o.orderDate) = :month) " +
+            "GROUP BY EXTRACT(MONTH FROM o.orderDate), EXTRACT(YEAR FROM o.orderDate)")
     List<Object[]> thongKeDoanhThuTheoThangCuaMotThang(@Param("month") Integer month);
 
     @Query("SELECT p.name as productName, SUM(o.totalMoney) as totalRevenue, SUM(od.numberOfProducts) as totalQuantitySold " +

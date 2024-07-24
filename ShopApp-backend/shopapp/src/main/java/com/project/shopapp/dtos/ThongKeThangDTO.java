@@ -6,11 +6,13 @@ import lombok.*;
 @NoArgsConstructor
 public class ThongKeThangDTO extends ThongKeDTO {
     private String month;
+    private int year;
 
     @Builder
-    public ThongKeThangDTO(String month, double totalMoney, Integer numberOfProducts) {
+    public ThongKeThangDTO(String month,  int year, double totalMoney, Integer numberOfProducts) {
         super(totalMoney, numberOfProducts);
         this.month = month;
+        this.year = year;
     }
 }
 
