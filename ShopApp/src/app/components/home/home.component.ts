@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) { }
 
 
@@ -94,7 +96,7 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(product: any) {
-
+    this.cartService.addToCart(product.id);
   }
 
   openQuickView(product: any) {

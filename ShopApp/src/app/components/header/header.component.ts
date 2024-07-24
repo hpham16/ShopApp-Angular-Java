@@ -1,11 +1,11 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-
 import { Router } from '@angular/router';
 import { NgbModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { UserResponse } from '../../responses/user/user.response';
 import { TokenService } from '../../services/token.service';
 import { LoginComponent } from '../login/login.component';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -17,16 +17,27 @@ export class HeaderComponent implements OnInit {
   isPopoverOpen = false;
   activeNavItem: number = 0;
   isScrolled = false;
+  itemCount: number = 0;
+
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
     private tokenService: TokenService,
     private router: Router,
-  ) {
+    private cartService: CartService
+  ) { }
 
-  }
   ngOnInit() {
-    this.userResponse = this.userService.getUserResponseFromLocalStorage();
+    this.userService.user$.subscribe(user => {
+      this.userResponse = user;
+    });
+    this.cartService.getCartObservable().subscribe(cart => {
+      this.itemCount = Array.from(cart.values()).reduce((sum, qty) => sum + qty, 0);
+    });
+  }
+
+  private updateItemCount() {
+    this.itemCount = Array.from(this.cartService.getCart().values()).reduce((sum, qty) => sum + qty, 0);
   }
 
   @HostListener('window:scroll', [])
@@ -41,10 +52,6 @@ export class HeaderComponent implements OnInit {
       p.open();
     }
   }
-  // togglePopover(event: Event): void {
-  //   event.preventDefault();
-  //   this.isPopoverOpen = !this.isPopoverOpen;
-  // }
 
   handleItemClick(index: number): void {
     if (index === 0) {
@@ -57,11 +64,8 @@ export class HeaderComponent implements OnInit {
     this.isPopoverOpen = false; // Close the popover after clicking an item
   }
 
-
   setActiveNavItem(index: number) {
-    console.log(index)
     this.activeNavItem = index;
-    //alert(this.activeNavItem);
   }
 
   openLoginModal() {

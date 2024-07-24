@@ -10,6 +10,7 @@ import { UpdateProductAdminComponent } from "./product/update/update.product.adm
 import { InsertProductAdminComponent } from "./product/insert/insert.product.admin.component";
 import { InsertCategoryAdminComponent } from "./category/insert/insert.category.admin.component";
 import { UpdateCategoryAdminComponent } from "./category/update/update.category.admin.component";
+import { ReportComponent } from "./report/report.component";
 
 const routes: Routes = [
     {
@@ -19,7 +20,7 @@ const routes: Routes = [
             {
                 path: 'orders',
                 component: OrderAdminComponent
-            },            
+            },
             {
                 path: 'products',
                 component: ProductAdminComponent
@@ -41,7 +42,7 @@ const routes: Routes = [
                 path: 'products/insert',
                 component: InsertProductAdminComponent
             },
-            //categories            
+            //categories
             {
                 path: 'categories/update/:id',
                 component: UpdateCategoryAdminComponent
@@ -50,6 +51,10 @@ const routes: Routes = [
                 path: 'categories/insert',
                 component: InsertCategoryAdminComponent
             },
+            {
+              path: 'report',
+              component: ReportComponent
+          },
         ]
     }
 ];

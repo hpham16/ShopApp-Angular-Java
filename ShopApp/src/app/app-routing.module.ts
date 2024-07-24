@@ -10,19 +10,20 @@ import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './components/order/order.component';
 import { UserProfileComponent } from './components/user-profile/user.profile.component';
 import { AuthGuardFn } from './guards/auth.guard';
+import { AdminGuardFn } from './guards/admin.guard';
 //import { OrderAdminComponent } from './components/admin/order/order.admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products/:id', component: DetailProductComponent, data: { breadcrumb: 'Product Details' } },
-  { path: 'orders', component: OrderComponent, canActivate: [AuthGuardFn] },
+  { path: 'orders', component: OrderComponent },
   { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuardFn] },
   { path: 'orders/:id', component: OrderDetailComponent },
   //Admin
   {
     path: 'admin',
     component: AdminComponent,
-    // canActivate:[AdminGuardFn]
+    canActivate:[AdminGuardFn]
   },
 ];
 

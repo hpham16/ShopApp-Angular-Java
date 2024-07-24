@@ -11,6 +11,7 @@ import { UserResponse } from '../../responses/user/user.response';
 import { CartService } from '../../services/cart.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from '../register/register.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -37,8 +38,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private tokenService: TokenService,
     private roleService: RoleService,
-    private cartService: CartService
-  ) { }
+    private cartService: CartService,
+    private toastService: ToastService) { }
 
   ngOnInit() {
     // Call API to get list of roles and store in roles variable
@@ -87,6 +88,8 @@ export class LoginComponent implements OnInit {
               } else if (this.userResponse?.role.name == 'user') {
                 this.router.navigate(['/']);
               }
+              this.toastService.show('Success', 'This is a success message', 'bg-success text-light');
+
             },
             complete: () => {
               this.cartService.refreshCart();

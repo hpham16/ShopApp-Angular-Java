@@ -1,111 +1,99 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { Observable } from 'rxjs';
-import { Location } from '@angular/common';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderResponse } from '../../../responses/order/order.response';
 import { OrderService } from '../../../services/order.service';
+import { ToastService } from './../../../services/toast.service';
 
 @Component({
   selector: 'app-order-admin',
   templateUrl: './order.admin.component.html',
   styleUrls: ['./order.admin.component.scss']
 })
-export class OrderAdminComponent implements OnInit{  
+export class OrderAdminComponent implements OnInit {
+  @ViewChild('deleteModal') deleteModal!: TemplateRef<any>;
+
   orders: OrderResponse[] = [];
-  currentPage: number = 0;
+  currentPage: number = 1;
   itemsPerPage: number = 12;
-  pages: number[] = [];
-  totalPages:number = 0;
-  keyword:string = "";
-  visiblePages: number[] = [];
+  totalPages: number = 0;
+  keyword: string = "";
+  orderToDelete!: any;
 
   constructor(
     private orderService: OrderService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
-  ) {
+    private modalService: NgbModal,
+    private toastService: ToastService
+  ) { }
 
-  }
   ngOnInit(): void {
-    
-    this.currentPage = Number(localStorage.getItem('currentOrderAdminPage')) || 0; 
+    this.currentPage = Number(localStorage.getItem('currentOrderAdminPage')) || 1;
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
   }
+
   searchOrders() {
-    this.currentPage = 0;
-    this.itemsPerPage = 12;
-    //Mediocre Iron Wallet
-    
+    this.currentPage = 1;
     this.getAllOrders(this.keyword.trim(), this.currentPage, this.itemsPerPage);
   }
+
   getAllOrders(keyword: string, page: number, limit: number) {
-    
-    this.orderService.getAllOrders(keyword, page, limit).subscribe({
+    this.orderService.getAllOrders(keyword, page - 1, limit).subscribe({
       next: (response: any) => {
-                
         this.orders = response.orders;
         this.totalPages = response.totalPages;
-        this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
-      },
-      complete: () => {
-        ;
       },
       error: (error: any) => {
-        ;
-        console.error('Error fetching products:', error);
+        console.error('Error fetching orders:', error);
       }
-    });    
+    });
   }
+
   onPageChange(page: number) {
-    ;
-    this.currentPage = page < 0 ? 0 : page;
-    localStorage.setItem('currentOrderAdminPage', String(this.currentPage));         
+    this.currentPage = page;
+    localStorage.setItem('currentOrderAdminPage', String(this.currentPage));
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
   }
 
-  generateVisiblePageArray(currentPage: number, totalPages: number): number[] {
-    const maxVisiblePages = 5;
-    const halfVisiblePages = Math.floor(maxVisiblePages / 2);
-
-    let startPage = Math.max(currentPage - halfVisiblePages, 1);
-    let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
-
-    if (endPage - startPage + 1 < maxVisiblePages) {
-      startPage = Math.max(endPage - maxVisiblePages + 1, 1);
-    }
-
-    return new Array(endPage - startPage + 1).fill(0)
-        .map((_, index) => startPage + index);
+  openDeleteModal(order: OrderResponse) {
+    this.orderToDelete = order;
+    this.modalService.open(this.deleteModal, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        if (result === 'delete') {
+          this.deleteOrder();
+        }
+      },
+      (reason) => {
+        this.orderToDelete = null;
+      }
+    );
+    console.log(this.orderToDelete)
   }
 
-  deleteOrder(id:number) {
-    const confirmation = window
-      .confirm('Are you sure you want to delete this order?');
-    if (confirmation) {
-      
-      this.orderService.deleteOrder(id).subscribe({
-        next: (response: any) => {
-           
-          location.reload();          
-        },
-        complete: () => {
-          ;          
+  confirmDelete() {
+    this.deleteOrder();
+    this.modalService.dismissAll('delete');
+  }
+
+  deleteOrder() {
+    if (this.orderToDelete) {
+      this.orderService.deleteOrder(this.orderToDelete.id).subscribe({
+        next: (res) => {
+          console.log(res)
+          this.toastService.show('Success', 'Delete order successfully !', 'bg-success text-light');
+          this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
         },
         error: (error: any) => {
-          ;
-          console.error('Error fetching products:', error);
+          console.error('Error deleting order:', error);
+        },
+        complete: () => {
         }
-      });    
+      });
     }
   }
-  viewDetails(order:OrderResponse) {
-    
+
+  viewDetails(order: OrderResponse) {
     this.router.navigate(['/admin/orders', order.id]);
   }
-  
 }

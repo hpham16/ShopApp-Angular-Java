@@ -47,12 +47,3 @@ export class AdminComponent implements OnInit {
     }
   }
 }
-
-
-/**
- npm install --save font-awesome
- angular.json:
- "styles": [
-    "node_modules/font-awesome/css/font-awesome.min.css"
-],
- */

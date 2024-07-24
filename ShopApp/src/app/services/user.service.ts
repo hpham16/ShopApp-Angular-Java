@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RegisterDTO } from '../dtos/user/register.dto';
 import { LoginDTO } from '../dtos/user/login.dto';
 import { environment } from '../../environments/environment';
@@ -27,6 +27,9 @@ export class UserService {
     private http: HttpClient,
     private httpUtilService: HttpUtilService
   ) { }
+  private userSubject = new BehaviorSubject<any>(this.getUserResponseFromLocalStorage());
+  user$ = this.userSubject.asObservable();
+
 
   register(registerDTO: RegisterDTO): Observable<any> {
     return this.http.post(this.apiRegister, registerDTO, this.apiConfig);
@@ -63,6 +66,7 @@ export class UserService {
       const userResponseJSON = JSON.stringify(userResponse);
       // Save the JSON string to local storage with a key (e.g., "userResponse")
       localStorage.setItem('user', userResponseJSON);
+      this.userSubject.next(userResponse);
       console.log('User response saved to local storage.');
     } catch (error) {
       console.error('Error saving user response to local storage:', error);

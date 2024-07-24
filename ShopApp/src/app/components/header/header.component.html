@@ -22,8 +22,9 @@
               routerLink="/notifications">Thông báo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{ 'active': activeNavItem === 2 }" (click)="setActiveNavItem(2)"
+            <a class="nav-link cart-icon" [ngClass]="{ 'active': activeNavItem === 2 }" (click)="setActiveNavItem(2)"
               routerLink="/orders">
+              <span class="badge">{{ itemCount }}</span>
               <i class="fas fa-shopping-cart icon"></i>
               Giỏ hàng
             </a>

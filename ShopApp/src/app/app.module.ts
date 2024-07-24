@@ -9,7 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +30,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TabContentComponent } from './components/tab-content/tab-content.component';
 import { UserProfileComponent } from './components/user-profile/user.profile.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ToastContainerComponent } from './components/toast-container/toast-container.component';
 
 @NgModule({
   declarations: [
@@ -47,14 +48,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     ProductCardItemComponent,
     CommentListComponent,
     TabContentComponent,
-    BreadcrumbsComponent
-
-    //admin
-    //AdminComponent,
-    //OrderAdminComponent,
-    //ProductAdminComponent,
-    //CategoryAdminComponent,
-    //DetailOrderAdminComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +64,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    ToastContainerComponent
   ],
   providers: [
     {
@@ -80,12 +75,6 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
   ],
   bootstrap: [
     AppComponent
-    // HomeComponent,
-    //DetailProductComponent,
-    // OrderComponent,
-    //OrderDetailComponent,
-    //LoginComponent,
-    // RegisterComponent
   ]
 })
 export class AppModule { }

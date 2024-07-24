@@ -54,7 +54,6 @@ main {
 
 /* Custom CSS for active link */
 #sidebar a.active {
-  font-weight: bold;
   /* Highlight active link */
   background-color: #0056b3;
 }
@@ -67,4 +66,8 @@ main {
 
 .icon {
   padding: 5px;
+}
+
+.custom-row>* {
+  padding-right: 0
 }
