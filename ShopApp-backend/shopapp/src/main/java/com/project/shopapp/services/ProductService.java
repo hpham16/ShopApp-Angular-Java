@@ -55,9 +55,9 @@ public class ProductService implements IProductService{
     }
     @Override
     public List<Product> findProductsByIds(List<Long> productIds) {
+
         return productRepository.findProductsByIds(productIds);
     }
-
 
     @Override
     public Page<ProductResponse> getAllProducts(String keyword,
@@ -128,5 +128,4 @@ public class ProductService implements IProductService{
         }
         return productImageRepository.save(newProductImage);
     }
-
 }

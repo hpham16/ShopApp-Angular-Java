@@ -1,11 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Product } from '../../models/product';
-import { Category } from '../../models/category';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnalyticsService, CartService, CategoryService, ProductService } from 'src/app/services';
 import { environment } from '../../../environments/environment';
-import { CategoryService } from '../../services/category.service';
-import { ProductService } from '../../services/product.service';
-import { CartService } from 'src/app/services/cart.service';
+import { Category } from '../../models/category';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-home',
@@ -28,12 +26,14 @@ export class HomeComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private analyticsService: AnalyticsService
   ) { }
 
 
 
   ngOnInit() {
+    this.analyticsService.trackEvent('load page', 'visited', 'test')
     this.currentPage = Number(localStorage.getItem('currentProductPage')) || 0;
     this.loadProducts();
     this.loadCategories();

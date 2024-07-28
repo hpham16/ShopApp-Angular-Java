@@ -2,14 +2,15 @@ package com.project.shopapp.controllers;
 
 import com.github.javafaker.Faker;
 import com.project.shopapp.components.LocalizationUtils;
-import com.project.shopapp.dtos.*;
+import com.project.shopapp.dtos.ProductDTO;
+import com.project.shopapp.dtos.ProductImageDTO;
 import com.project.shopapp.models.Product;
 import com.project.shopapp.models.ProductImage;
 import com.project.shopapp.responses.ProductListResponse;
 import com.project.shopapp.responses.ProductResponse;
 import com.project.shopapp.services.IProductService;
 import com.project.shopapp.utils.MessageKeys;
-import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,14 +21,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -191,6 +189,7 @@ public class ProductController {
         }
 
     }
+
     @GetMapping("/by-ids")
     public ResponseEntity<?> getProductsByIds(@RequestParam("ids") String ids) {
         //eg: 1,3,5,7
@@ -215,6 +214,7 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     //@PostMapping("/generateFakeProducts")
     private ResponseEntity<String> generateFakeProducts() {
         Faker faker = new Faker();

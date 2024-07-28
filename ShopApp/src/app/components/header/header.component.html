@@ -47,8 +47,10 @@
               </div>
             </ng-template>
           </li>
-          <li class="nav-item" *ngIf="!userResponse">
-            <a class="nav-link" href="#" (click)="openLoginModal()">Đăng nhập</a>
+          <li class="nav-item d-flex" *ngIf="!userResponse">
+            <a class="nav-link" href="#" (click)="openLoginModal()"> <i class="fa fa-sign-in"></i> Đăng
+              nhập</a>
+            <a class="nav-link" href="#" (click)="createAccount()"><i class="fa-solid fa-user-plus"></i> Đăng ký</a>
           </li>
         </ul>
       </div>

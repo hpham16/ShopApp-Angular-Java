@@ -1,13 +1,12 @@
 package com.project.shopapp.controllers;
 
 import com.project.shopapp.components.LocalizationUtils;
-import com.project.shopapp.dtos.*;
+import com.project.shopapp.dtos.CategoryDTO;
 import com.project.shopapp.models.Category;
 import com.project.shopapp.responses.CategoryResponse;
 import com.project.shopapp.responses.UpdateCategoryResponse;
 import com.project.shopapp.services.CategoryService;
 import com.project.shopapp.utils.MessageKeys;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("${api.prefix}/categories")
@@ -30,6 +28,19 @@ public class CategoryController {
     private final LocaleResolver localeResolver;
     private final MessageSource messageSource;
     private final LocalizationUtils localizationUtils;
+
+    //http://localhost:8088/api/v1/products/6
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCategoryById(
+            @PathVariable("id") Long categoryId
+    ) {
+        try {
+            Category existingCategory = categoryService.getCategoryById(categoryId);
+            return ResponseEntity.ok(existingCategory);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     @PostMapping("")
     //Nếu tham số truyền vào là 1 object thì sao ? => Data Transfer Object = Request Object

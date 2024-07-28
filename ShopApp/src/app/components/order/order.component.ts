@@ -114,6 +114,7 @@ export class OrderComponent implements OnInit {
   placeOrder() {
     if (!this.userResponse) {
       this.modalService.open(LoginComponent, { size: 'lg' });
+      return;
     }
     if (this.orderForm.errors == null) {
       // Gán giá trị từ form vào đối tượng orderData

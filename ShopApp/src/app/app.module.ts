@@ -64,7 +64,7 @@ import { ToastContainerComponent } from './components/toast-container/toast-cont
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    ToastContainerComponent
+    ToastContainerComponent,
   ],
   providers: [
     {

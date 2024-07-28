@@ -1,11 +1,13 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { NgbModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { ToastService } from 'src/app/services';
+import { CartService } from 'src/app/services/cart.service';
 import { UserResponse } from '../../responses/user/user.response';
 import { TokenService } from '../../services/token.service';
+import { UserService } from '../../services/user.service';
 import { LoginComponent } from '../login/login.component';
-import { CartService } from 'src/app/services/cart.service';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +26,8 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private tokenService: TokenService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -78,5 +81,10 @@ export class HeaderComponent implements OnInit {
       this.userResponse = null;
       this.router.navigate(['/']);
     });
+  }
+  createAccount() {
+    // Redirect user to register page (or create account page)
+    //this.activeModal.dismiss();
+    this.modalService.open(RegisterComponent, { size: 'lg' });
   }
 }

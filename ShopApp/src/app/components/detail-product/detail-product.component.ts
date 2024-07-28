@@ -78,7 +78,6 @@ export class DetailProductComponent implements OnInit {
       this.productService.getDetailProduct(this.productId).subscribe({
         next: (response: any) => {
           // Lấy danh sách ảnh sản phẩm và thay đổi URL
-
           if (response.product_images && response.product_images.length > 0) {
             response.product_images.forEach((product_image: ProductImage) => {
               product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
@@ -90,10 +89,8 @@ export class DetailProductComponent implements OnInit {
           this.showImage(0);
         },
         complete: () => {
-          ;
         },
         error: (error: any) => {
-          ;
           console.error('Error fetching detail:', error);
         }
       });
@@ -101,6 +98,13 @@ export class DetailProductComponent implements OnInit {
       console.error('Invalid productId:', idParam);
     }
   }
+
+  // getProductByCatagoryId(category: number) {
+  //   this.productService.getProductByCategoryId(category).subscribe((res: any) => {
+  //     console.log(res)
+  //   })
+  // }
+
   showImage(index: number): void {
 
     if (this.product && this.product.product_images &&
@@ -115,11 +119,13 @@ export class DetailProductComponent implements OnInit {
       this.currentImageIndex = index;
     }
   }
+
   thumbnailClick(index: number) {
 
     // Gọi khi một thumbnail được bấm
     this.currentImageIndex = index; // Cập nhật currentImageIndex
   }
+
   nextImage(): void {
 
     this.showImage(this.currentImageIndex + 1);
@@ -129,6 +135,7 @@ export class DetailProductComponent implements OnInit {
 
     this.showImage(this.currentImageIndex - 1);
   }
+
   addToCart(): void {
 
     this.isPressedAddToCart = true;
@@ -150,12 +157,14 @@ export class DetailProductComponent implements OnInit {
       this.quantity--;
     }
   }
+
   getTotalPrice(): number {
     if (this.product) {
       return this.product.price * this.quantity;
     }
     return 0;
   }
+
   buyNow(): void {
     if (this.isPressedAddToCart == false) {
       this.addToCart();

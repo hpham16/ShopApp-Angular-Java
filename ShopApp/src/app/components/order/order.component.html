@@ -1,11 +1,11 @@
 <app-header></app-header>
 <div class="container">
   <div class="intro-section">
-    <h5>Giỏ hàng</h5>
+    <h4>Giỏ hàng</h4>
   </div>
   <form [formGroup]="orderForm"> <!-- Thêm form và gán formGroup -->
     <div class="row">
-      <!-- <div class="col-md-5">
+      <div class="col-md-5">
         <h2 class="product-header">Thông tin người nhận</h2>
         <div class="mb-3">
           <label for="fullname" class="form-label">Họ và tên</label>
@@ -61,7 +61,7 @@
             <option value="other">Thanh toán khác</option>
           </select>
         </div>
-      </div> -->
+      </div>
       <div class="col-md-7">
         <h2 class="product-order">Sản phẩm đã đặt hàng</h2>
         <table>
@@ -96,28 +96,29 @@
             </ng-container>
           </tbody>
         </table>
-      </div>
-      <div class="col-md-5">
-        <div class="mt-3">
-          <h4 class="product-header">Nhập coupon</h4>
-          <div class="input-group">
-            <input type="text" class="form-control" formControlName="couponCode" placeholder="Nhập coupon">
-            <button (click)="applyCoupon() " class="btn btn-gradient" type="button">Áp dụng</button>
+        <div class="row">
+          <div class="mt-3">
+            <h4 class="product-header">Nhập coupon</h4>
+            <div class="input-group">
+              <input type="text" class="form-control" formControlName="couponCode" placeholder="Nhập coupon">
+              <button (click)="applyCoupon() " class="btn btn-gradient" type="button">Áp dụng</button>
+            </div>
+            <div class="text-start mt-3 text-end">
+              <h3 class="header-text">Tổng giá: {{ totalAmount2 | number:'1.0-0'}}đ</h3>
+            </div>
           </div>
+          @if(couponDiscount > 0) {
           <div class="text-start mt-3 text-end">
-            <h3 class="header-text">Tổng giá: {{ totalAmount2 | number:'1.0-0'}}đ</h3>
+            <h6 class="header-text ">Bạn được discount: {{ couponDiscount | number:'1.0-0'}} đ</h6>
+            <h3 class="header-text">Tổng thanh toán: {{ totalAmount | number:'1.0-0'}}đ</h3>
+          </div>
+          }
+          <div class="text-center mt-3">
+            <button (click)="placeOrder()" class="btn btn-gradient" type="button">Đặt hàng</button>
           </div>
         </div>
-        @if(couponDiscount > 0) {
-        <div class="text-start mt-3 text-end">
-          <h6 class="header-text ">Bạn được discount: {{ couponDiscount | number:'1.0-0'}} đ</h6>
-          <h3 class="header-text">Tổng thanh toán: {{ totalAmount | number:'1.0-0'}}đ</h3>
-        </div>
-        }
-        <div class="text-center mt-3">
-          <button (click)="placeOrder()" class="btn btn-gradient" type="button">Đặt hàng</button>
-        </div>
       </div>
+
     </div>
   </form>
 </div>

@@ -1,2 +1,46 @@
-<p>report works!</p>
-<app-admin-chart></app-admin-chart>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="filterForm" (ngSubmit)="filterData()">
+        <div class="form-group">
+          <label for="startMonthYear">Start Month/Year</label>
+          <input type="text" id="startMonthYear" formControlName="startMonthYear" class="form-control" ngbDatepicker #startD="ngbDatepicker" placeholder="Select start month and year" (click)="startD.toggle()" />
+        </div>
+        <div class="form-group">
+          <label for="endMonthYear">End Month/Year</label>
+          <input type="text" id="endMonthYear" formControlName="endMonthYear" class="form-control" ngbDatepicker #endD="ngbDatepicker" placeholder="Select end month and year" (click)="endD.toggle()" />
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-primary mt-2">Filter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" sortable="month" (sort)="onSort($event)">Month</th>
+            <th scope="col" sortable="year" (sort)="onSort($event)">Year</th>
+            <th scope="col" sortable="totalMoney" (sort)="onSort($event)">Total Money</th>
+            <th scope="col" sortable="numberOfProducts" (sort)="onSort($event)">Number of Products</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredData">
+            <td>{{ item.month }}</td>
+            <td>{{ item.year }}</td>
+            <td>{{ item.totalMoney | currency: "VND" }}</td>
+            <td>{{ item.numberOfProducts }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <app-admin-chart [barChartLabels]="barChartLabels" [barChartData]="barChartData"
+        [barChartOptions]="barChartOptions" barChartType="bar" [barChartLegend]="true">
+      </app-admin-chart>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,11 @@
 <div class="chart-container">
-  <div style="display: block;">
-    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-      [legend]="barChartLegend" [type]="'bar'" (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)"></canvas>
-  </div>
+    <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [type]="'bar'"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+  </canvas>
 </div>

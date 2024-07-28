@@ -16,6 +16,7 @@ import { OrderResponse } from '../responses/order/order.response';
 export class OrderService {
   private apiUrl = `${environment.apiBaseUrl}/orders`;
   private apiGetAllOrders = `${environment.apiBaseUrl}/orders/get-orders-by-keyword`;
+  private apiGetAllMonthRevenue = `${environment.apiBaseUrl}/orders/thong-ke-thang`;
 
   constructor(private http: HttpClient) { }
 
@@ -23,10 +24,12 @@ export class OrderService {
     // Gửi yêu cầu đặt hàng
     return this.http.post(this.apiUrl, orderData);
   }
+
   getOrderById(orderId: number): Observable<any> {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.get(url);
   }
+
   getAllOrders(keyword: string,
     page: number, limit: number
   ): Observable<OrderResponse[]> {
@@ -37,12 +40,25 @@ export class OrderService {
       .set('sort', limit.toString());
     return this.http.get<any>(this.apiGetAllOrders, { params });
   }
+
   updateOrder(orderId: number, orderData: OrderDTO): Observable<any> {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.put(url, orderData);
   }
+
   deleteOrder(orderId: number): Observable<any> {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.delete(url, { responseType: 'text' });
+  }
+
+  getMonthRevenue(month: string = ''): Observable<any> {
+    if (month) {
+      const params = new HttpParams()
+        .set('month', month)
+      return this.http.get<any>(this.apiGetAllMonthRevenue, { params });
+    }
+    else {
+      return this.http.get<any>(this.apiGetAllMonthRevenue);
+    }
   }
 }

@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReportComponent } from './report/report.component';
+import { NgbdSortableHeader } from 'src/app/directives/sortable.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ReportComponent } from './report/report.component';
     CommonModule,
     FormsModule,
     NgbModule,
-    ReportComponent
+    ReportComponent,
+    NgbdSortableHeader
   ]
 })
 export class AdminModule {}

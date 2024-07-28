@@ -1,5 +1,6 @@
 package com.project.shopapp.repositories;
 
+import com.project.shopapp.models.Category;
 import com.project.shopapp.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.*;
@@ -21,7 +22,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
              @Param("keyword") String keyword, Pageable pageable);
     @Query("SELECT p FROM Product p LEFT JOIN FETCH p.productImages WHERE p.id = :productId")
     Optional<Product> getDetailProduct(@Param("productId") Long productId);
-
     @Query("SELECT p FROM Product p WHERE p.id IN :productIds")
     List<Product> findProductsByIds(@Param("productIds") List<Long> productIds);
 }

@@ -38,12 +38,12 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiBaseUrl}/products/by-ids`, { params });
   }
   deleteProduct(productId: number): Observable<string> {
-    
+
     return this.http.delete<string>(`${this.apiBaseUrl}/products/${productId}`);
   }
   updateProduct(productId: number, updatedProduct: UpdateProductDTO): Observable<UpdateProductDTO> {
     return this.http.put<Product>(`${this.apiBaseUrl}/products/${productId}`, updatedProduct);
-  }  
+  }
   insertProduct(insertProductDTO: InsertProductDTO): Observable<any> {
     // Add a new product
     return this.http.post(`${this.apiBaseUrl}/products`, insertProductDTO);
@@ -57,7 +57,7 @@ export class ProductService {
     return this.http.post(`${this.apiBaseUrl}/products/uploads/${productId}`, formData);
   }
   deleteProductImage(id: number): Observable<any> {
-    
+
     return this.http.delete<string>(`${this.apiBaseUrl}/product_images/${id}`);
   }
 }
