@@ -65,45 +65,62 @@ export class DetailProductComponent implements OnInit {
   ) {
 
   }
-  ngOnInit() {
-    // Lấy productId từ URL
-    const idParam = this.activatedRoute.snapshot.paramMap.get('id');
 
-    //this.cartService.clearCart();
-    //const idParam = 9 //fake tạm 1 giá trị
-    if (idParam !== null) {
-      this.productId = +idParam;
-    }
-    if (!isNaN(this.productId)) {
-      this.productService.getDetailProduct(this.productId).subscribe({
-        next: (response: any) => {
-          // Lấy danh sách ảnh sản phẩm và thay đổi URL
-          if (response.product_images && response.product_images.length > 0) {
-            response.product_images.forEach((product_image: ProductImage) => {
-              product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
-            });
-          }
-
-          this.product = response
-          // Bắt đầu với ảnh đầu tiên
-          this.showImage(0);
-        },
-        complete: () => {
-        },
-        error: (error: any) => {
-          console.error('Error fetching detail:', error);
-        }
-      });
+  ngOnInit(): void {
+    this.fetchProductIdFromRoute();
+    if (this.productId !== null && !isNaN(this.productId)) {
+      this.loadProductDetails();
     } else {
-      console.error('Invalid productId:', idParam);
+      console.error('Invalid productId:', this.productId);
     }
   }
 
-  // getProductByCatagoryId(category: number) {
-  //   this.productService.getProductByCategoryId(category).subscribe((res: any) => {
-  //     console.log(res)
-  //   })
-  // }
+  private fetchProductIdFromRoute(): void {
+    const idParam = this.activatedRoute.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+      this.productId = +idParam;
+    }
+  }
+
+  public loadProductDetails(): void {
+    this.productService.getDetailProduct(this.productId as number).subscribe({
+      next: (response: any) => {
+        this.updateProductImages(response.product_images);
+        this.product = response;
+        this.showImage(0);
+        this.loadProductsByCategoryId();
+      },
+      error: (error: any) => this.handleError('Error fetching product details:', error)
+    });
+  }
+
+  private updateProductImages(images: ProductImage[]): void {
+    if (images && images.length > 0) {
+      images.forEach((image: ProductImage) => {
+        image.image_url = `${environment.apiBaseUrl}/products/images/${image.image_url}`;
+      });
+    }
+  }
+
+  private loadProductsByCategoryId(): void {
+    if (this.product && this.product.category_id) {
+      this.productService.getProducts("", this.product.category_id, 0, 10).subscribe({
+        next: (response: any) => {
+          response.products.forEach((product: Product) => {
+            product.url = product.thumbnail
+              ? `${environment.apiBaseUrl}/products/images/${product.thumbnail}`
+              : "assets/img/no-image.svg";
+          });
+          this.products = response.products;
+        },
+        error: (error: any) => this.handleError('Error fetching products by category:', error)
+      });
+    }
+  }
+
+  private handleError(message: string, error: any): void {
+    console.error(message, error);
+  }
 
   showImage(index: number): void {
 
@@ -170,5 +187,10 @@ export class DetailProductComponent implements OnInit {
       this.addToCart();
     }
     this.router.navigate(['/orders']);
+  }
+
+  viewProduct(id: number) {
+    this.fetchProductIdFromRoute();
+      this.loadProductDetails();
   }
 }

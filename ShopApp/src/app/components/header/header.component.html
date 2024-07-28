@@ -13,27 +13,21 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" [ngClass]="{ 'active': activeNavItem === 0 }" (click)="setActiveNavItem(0)"
-              routerLink="/">Trang chủ</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [ngClass]="{ 'active': activeNavItem === 1 }" (click)="setActiveNavItem(1)"
-              routerLink="/notifications">Thông báo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link cart-icon" [ngClass]="{ 'active': activeNavItem === 2 }" (click)="setActiveNavItem(2)"
-              routerLink="/orders">
-              <span class="badge">{{ itemCount }}</span>
-              <i class="fas fa-shopping-cart icon"></i>
-              Giỏ hàng
+          <li class="nav-item" *ngFor="let item of navItems; let i = index">
+            <a class="nav-link cart-icon" [ngClass]="{ 'active': activeNavItem === i }" (click)="setActiveNavItem(i)"
+              [routerLink]="item.route">
+              <i [class]="item.icon"></i>
+              <span *ngIf="item.name === 'Giỏ hàng'">
+                <span class="badge">{{ itemCount }}</span>
+              </span>
+              {{ item.name }}
             </a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item" *ngIf="userResponse">
             <a class="nav-link d-flex align-items-center" (click)="togglePopover(p)" href="#">
-              <img [src]="userResponse.avatar" alt="Avatar" class="rounded-circle avatar me-2">
+              <img src="assets/img/logo.jpg" alt="Avatar" class="rounded-circle avatar me-2">
               {{ userResponse.fullname }}
             </a>
             <div ngbPopover="User Actions" [ngbPopover]="popoverContent" #p="ngbPopover" triggers="manual"
@@ -57,6 +51,3 @@
     </div>
   </nav>
 </header>
-<main class="main-content">
-  <router-outlet></router-outlet>
-</main>

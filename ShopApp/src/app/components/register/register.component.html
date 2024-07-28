@@ -9,8 +9,8 @@
       <input type="text" class="form-control" [(ngModel)]="phoneNumber" (input)="onPhoneNumberChange()" name="phone"
         (focus)="registerForm.form.markAsTouched()" required id="phoneNumber">
       <div class="divider-nospace"></div>
-      <p class="text-danger" *ngIf="phoneNumber.length < 6 && registerForm.form.touched">
-        Phone phải có ít nhất 6 ký tự
+      <p class="text-danger" *ngIf="phoneNumber.length < 10 && registerForm.form.touched">
+        Phone phải có ít nhất 10 ký tự
       </p>
     </div>
     <div class="mt-3"></div>
@@ -21,21 +21,21 @@
       <i class="password-toggle fas" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
         (click)="togglePassword()"></i>
       <div class="divider-nospace"></div>
-      <p class="text-danger" *ngIf="password.length < 3 && registerForm.form.touched">
-        Mật khẩu phải có ít nhất 3 ký tự
+      <p class="text-danger" *ngIf="password.length < 15 && registerForm.form.touched">
+        Mật khẩu phải có ít nhất 15 ký tự
       </p>
     </div>
     <div class="mt-3"></div>
     <div class="form-group password-field">
       <label for="retype-password">Gõ lại mật khẩu</label>
-      <input type="password" placeholder="Ít nhất 3 ký tự" [(ngModel)]="retypePassword" name="retypePassword"
+      <input type="password" placeholder="Ít nhất 15 ký tự" [(ngModel)]="retypePassword" name="retypePassword"
         (input)="registerForm.form.markAsTouched(); checkPasswordsMatch()" required class="form-control"
         id="retype-password">
       <i class="password-toggle fas" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
         (click)="togglePassword()"></i>
       <div class="divider-nospace"></div>
-      <p class="text-danger" *ngIf="retypePassword.length < 3 && registerForm.form.touched">
-        Mật khẩu phải có ít nhất 3 ký tự
+      <p class="text-danger" *ngIf="retypePassword.length < 15 && registerForm.form.touched">
+        Mật khẩu phải có ít nhất 15 ký tự
       </p>
       <p class="text-danger" *ngIf="registerForm.controls['retypePassword']?.hasError('passwordMismatch')
           && registerForm.form.touched">
@@ -76,6 +76,8 @@
   </form>
 </div>
 <div class="modal-footer">
+  <div class="text-start">Đã có tài khoản, <span><a class="register-link" (click)="onLogin()"> Đăng
+        nhập</a></span></div>
   <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel click')">Hủy</button>
   <button type="button" class="btn btn-primary" (click)="register()">Đăng ký</button>
 </div>

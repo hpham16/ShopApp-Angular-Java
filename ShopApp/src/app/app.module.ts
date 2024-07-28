@@ -9,7 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbDropdownModule, NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,23 +20,20 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { OrderDetailComponent } from './components/detail-order/order.detail.component';
 import { DetailProductComponent } from './components/detail-product/detail-product.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
 import { ProductCardItemComponent } from './components/product-card-item/product-card-item.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TabContentComponent } from './components/tab-content/tab-content.component';
+import { ToastContainerComponent } from './components/toast-container/toast-container.component';
 import { UserProfileComponent } from './components/user-profile/user.profile.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { ToastContainerComponent } from './components/toast-container/toast-container.component';
+import { LayoutComponent } from './pages/layout/layout.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HeaderComponent,
-    FooterComponent,
     DetailProductComponent,
     OrderComponent,
     OrderDetailComponent,
@@ -53,7 +50,7 @@ import { ToastContainerComponent } from './components/toast-container/toast-cont
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BrowserModule,
+   BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -61,10 +58,11 @@ import { ToastContainerComponent } from './components/toast-container/toast-cont
     NgbDropdownModule,
     AdminModule,
     CarouselModule,
-    BrowserAnimationsModule,
+   BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     ToastContainerComponent,
+    LayoutComponent
   ],
   providers: [
     {

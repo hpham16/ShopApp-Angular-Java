@@ -1,0 +1,97 @@
+.contact-us {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.hero-section {
+  background: url('https://via.placeholder.com/1600x600') no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  margin-top: 75px;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 24px;
+}
+
+.contact-details-section {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.contact-detail {
+  max-width: 300px;
+}
+
+.contact-detail h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.form-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.form-section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #ff4081;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e91e63;
+}
+
+.map-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.map-section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+}

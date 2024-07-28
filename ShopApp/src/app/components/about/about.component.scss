@@ -1,0 +1,122 @@
+.about-us {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.hero-section {
+  background: url('https://via.placeholder.com/1600x600') no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  margin-top: 75px;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 24px;
+}
+
+.story-section,
+.mission-section,
+.values-section,
+.products-section,
+.testimonials-section,
+.team-section,
+.location-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.story-section h2,
+.mission-section h2,
+.values-section h2,
+.products-section h2,
+.testimonials-section h2,
+.team-section h2,
+.location-section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.story-section p,
+.mission-section p,
+.values-section p,
+.products-section p,
+.testimonials-section p,
+.team-section p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.story-section img,
+.products-section img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.values-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.values-section li {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.products-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.products-section li {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.testimonials-section blockquote {
+  font-size: 16px;
+  font-style: italic;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.team-section .team-members {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-member img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.team-member h3 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.team-member p {
+  font-size: 18px;
+  color: #777;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+}

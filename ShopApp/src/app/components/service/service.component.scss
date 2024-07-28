@@ -1,0 +1,80 @@
+.services {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.hero-section {
+  background: url('https://via.placeholder.com/1600x600') no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  margin-top: 75px;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 24px;
+}
+
+.services-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 40px 20px;
+}
+
+.service-item {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+  transform: scale(1.05);
+}
+
+.service-item img {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  max-width: 100%;
+}
+
+.service-item h2 {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.service-item p {
+  font-size: 16px;
+  padding: 0 20px 20px;
+}
+
+.service-item button {
+  background-color: #ff4081;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.service-item button:hover {
+  background-color: #e91e63;
+}
+
+.details {
+  padding: 0 20px 20px;
+}

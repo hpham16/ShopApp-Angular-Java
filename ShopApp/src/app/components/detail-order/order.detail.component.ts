@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product';
-import { CartService } from '../../services/cart.service';
-import { ProductService } from '../../services/product.service';
-import { OrderService } from '../../services/order.service';
-import { OrderDTO } from '../../dtos/order/order.dto';
 import { ActivatedRoute } from '@angular/router';
-import { OrderResponse } from '../../responses/order/order.response';
 import { environment } from '../../../environments/environment';
 import { OrderDetail } from '../../models/order.detail';
+import { OrderResponse } from '../../responses/order/order.response';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -79,7 +75,7 @@ export class OrderDetailComponent implements OnInit {
         this.orderResponse.total_money = response.total_money;
       },
       complete: () => {
-        
+
       },
       error: (error: any) => {
         ;

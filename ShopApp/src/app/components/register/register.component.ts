@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../services/user.service';
 import { RegisterDTO } from '../../dtos/user/register.dto';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent {
   dateOfBirth: Date;
   showPassword: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal, private router: Router, private userService: UserService) {
+  constructor(public activeModal: NgbActiveModal, private router: Router, private userService: UserService, private modalService: NgbModal) {
     this.phoneNumber = '';
     this.password = '';
     this.retypePassword = '';
@@ -59,7 +60,6 @@ export class RegisterComponent {
         const confirmation = window.confirm('Đăng ký thành công, mời bạn đăng nhập. Bấm "OK" để chuyển đến trang đăng nhập.');
         if (confirmation) {
           this.activeModal.close();
-          this.router.navigate(['/login']);
         }
       },
       error: (error: any) => {
@@ -96,5 +96,9 @@ export class RegisterComponent {
         this.registerForm.form.controls['dateOfBirth'].setErrors(null);
       }
     }
+  }
+  onLogin() {
+    this.activeModal.dismiss();
+    this.modalService.open(LoginComponent, { size: 'lg' });
   }
 }

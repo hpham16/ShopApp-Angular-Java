@@ -1,6 +1,6 @@
 .container {
     color: rgb(117, 117, 117);
-    height: 100vh;    
+    height: 100vh;
 }
 
 .register-form {
@@ -150,5 +150,6 @@ label[for="date-of-birth"] {
 }
 
 .register-link {
-    font-weight: bold; /* Làm cho chữ in đậm */
+  color: blue;
+  cursor: pointer;
 }

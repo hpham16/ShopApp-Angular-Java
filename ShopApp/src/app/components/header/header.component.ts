@@ -1,6 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { NgbModal, NgbModule, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from 'src/app/services';
 import { CartService } from 'src/app/services/cart.service';
 import { UserResponse } from '../../responses/user/user.response';
@@ -9,9 +11,18 @@ import { UserService } from '../../services/user.service';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 
+interface NavItem {
+  name: string;
+  route: string;
+  icon?: string;
+}
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
+  standalone: true,
+  imports: [CommonModule, FormsModule, NgbModule, RouterModule],
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
@@ -20,7 +31,13 @@ export class HeaderComponent implements OnInit {
   activeNavItem: number = 0;
   isScrolled = false;
   itemCount: number = 0;
-
+  navItems: NavItem[] = [
+    { name: 'Trang chủ', route: '/', icon: '' },
+    { name: 'Giỏ hàng', route: '/orders', icon: 'fas fa-shopping-cart' },
+    { name: 'Về chúng tôi', route: '/about', icon: 'fa-solid fa-circle-info' },
+    { name: 'Dịch vụ', route: '/services', icon: 'fas fa-concierge-bell' },
+    { name: 'Liên hệ', route: '/contact', icon: 'fas fa-envelope' },
+  ];
   constructor(
     private modalService: NgbModal,
     private userService: UserService,

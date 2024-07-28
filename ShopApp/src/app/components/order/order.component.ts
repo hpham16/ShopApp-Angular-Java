@@ -112,6 +112,11 @@ export class OrderComponent implements OnInit {
     });
   }
   placeOrder() {
+    if (!this.orderForm.valid) {
+      alert("Nhập thông tin đặt hàng")
+      return;
+    }
+    console.log(!this.orderForm.valid)
     if (!this.userResponse) {
       this.modalService.open(LoginComponent, { size: 'lg' });
       return;
